@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">KotlinDemo</string>
+    <string name="imageView">imageView</string>
+    <string name="fetch_data">Fetch Data</string>
+    <string name="to_second_page">To Second Page</string>
+    <string name="exit_app">Exit app</string>
+</resources>
