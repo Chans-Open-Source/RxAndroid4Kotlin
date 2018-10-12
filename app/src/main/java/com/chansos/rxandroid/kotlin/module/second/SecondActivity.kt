@@ -15,39 +15,19 @@ import com.chansos.rxandroid.kotlin.R
 import com.chansos.rxandroid.kotlin.R.layout.activity_second
 import com.chansos.rxandroid.kotlin.anno.LayoutResId
 import com.chansos.rxandroid.kotlin.base.BaseActivity
-import com.chansos.rxandroid.kotlin.utils.UIHelper
+import com.chansos.rxandroid.kotlin.utils.ui.UIHelper
 import kotlinx.android.synthetic.main.activity_second.*
 
-@LayoutResId(activity_second)
-class SecondActivity : BaseActivity() {
+@LayoutResId(R.layout.activity_second)
+class SecondActivity : BaseActivity(), ViewPager.OnPageChangeListener, TabLayout.OnTabSelectedListener {
   val fragmentList = ArrayList<Fragment>()
   override fun initialize() {
     fragmentList.add(FirstFragment())
     fragmentList.add(SecondFragment())
     view_pager.adapter = Adapter(self as SecondActivity, supportFragmentManager)
-    view_pager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
-      override fun onPageScrollStateChanged(p0: Int) {
-      }
-
-      override fun onPageScrolled(p0: Int, p1: Float, p2: Int) {
-      }
-
-      override fun onPageSelected(p0: Int) {
-        (self as SecondActivity).onPageSelected(p0)
-      }
-    })
+    view_pager.addOnPageChangeListener(self as SecondActivity)
     tab_layout.setupWithViewPager(view_pager)
-    tab_layout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-      override fun onTabReselected(p0: TabLayout.Tab?) {
-      }
-
-      override fun onTabUnselected(p0: TabLayout.Tab?) {
-      }
-
-      override fun onTabSelected(p0: TabLayout.Tab?) {
-        onPageSelected(p0!!.position)
-      }
-    })
+    tab_layout.addOnTabSelectedListener(self as SecondActivity)
     for (i in 0..(tab_layout.tabCount - 1)) {
       tab_layout.getTabAt(i)?.text = fragmentList[i].javaClass.simpleName
     }
@@ -55,9 +35,25 @@ class SecondActivity : BaseActivity() {
     supportActionBar?.javaClass?.declaredFields!!.forEach { field -> println(field.name) }
   }
 
-  fun onPageSelected(position: Int) {
+  override fun onPageScrollStateChanged(p0: Int) {
+  }
+
+  override fun onPageScrolled(p0: Int, p1: Float, p2: Int) {
+  }
+
+  override fun onPageSelected(position: Int) {
     view_pager.setCurrentItem(position, false)
     self.title = fragmentList[position].javaClass.simpleName
+  }
+
+  override fun onTabReselected(p0: TabLayout.Tab?) {
+  }
+
+  override fun onTabUnselected(p0: TabLayout.Tab?) {
+  }
+
+  override fun onTabSelected(p0: TabLayout.Tab?) {
+    onPageSelected(p0!!.position)
   }
 
   private fun setCurrentMenuOptions(position: Int, menu: Menu?) {

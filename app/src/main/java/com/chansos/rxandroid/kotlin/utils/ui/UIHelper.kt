@@ -2,7 +2,7 @@
  * Copyright (c) 2018. Create and edit by ChangedenChan.
  */
 
-package com.chansos.rxandroid.kotlin.utils
+package com.chansos.rxandroid.kotlin.utils.ui
 
 import android.annotation.SuppressLint
 import android.app.Activity
@@ -18,31 +18,47 @@ import android.view.View
 import android.widget.Toast
 import com.afollestad.materialdialogs.MaterialDialog
 import com.chansos.rxandroid.kotlin.anno.LayoutResId
+import com.chansos.rxandroid.kotlin.utils.AppManager
 import java.util.concurrent.ConcurrentHashMap
 
-@SuppressLint("StaticFieldLeak", "ShowToast")
-class UIHelper(private val context: Context?) {
-  private var loadingDialogMap: ConcurrentHashMap<Int, MaterialDialog>? = null
-  private var toast: Toast? = null
-  private var receiverManager: LocalBroadcastManager? = null
-
-  init {
-    loadingDialogMap = ConcurrentHashMap()
-  }
-
+@SuppressLint("ShowToast")
+class UIHelper {
   companion object {
-    private var instance: UIHelper? = null
-    fun init(context: Context) {
-      if (instance == null) {
-        instance = UIHelper(context)
-        instance!!.toast = Toast.makeText(context, "", Toast.LENGTH_SHORT)
-        instance!!.receiverManager = LocalBroadcastManager.getInstance(context)
+    private var instance: UISupport = UISupport()
+    private fun getContext(): Context {
+      return AppManager.instance.context
+    }
+
+    private fun getToast(): Toast {
+      var toast = instance.toast
+      if (toast == null) {
+        toast = Toast.makeText(getContext(), "", Toast.LENGTH_SHORT)
+        instance.toast = toast
       }
+      return toast!!
+    }
+
+    private fun getLoadingDialogMap(): ConcurrentHashMap<Int, MaterialDialog> {
+      var map = instance.loadingDialogMap
+      if (map == null) {
+        map = ConcurrentHashMap()
+        instance.loadingDialogMap = map
+      }
+      return map
+    }
+
+    private fun getReceiverManager(): LocalBroadcastManager {
+      var rm = instance.receiverManager
+      if (rm == null) {
+        rm = LocalBroadcastManager.getInstance(AppManager.instance.context)
+        instance.receiverManager = rm
+      }
+      return rm
     }
 
     fun showToast(message: CharSequence): Toast? {
-      val toast = instance!!.toast
-      toast?.run {
+      val toast = getToast()
+      toast.run {
         setText(message)
         show()
       }
@@ -50,7 +66,7 @@ class UIHelper(private val context: Context?) {
     }
 
     fun showToast(@StringRes strResId: Int): Toast? {
-      return showToast(instance!!.context!!.resources.getString(strResId))
+      return showToast(getContext().resources.getString(strResId))
     }
 
     fun showLoading(ctx: Activity?, message: String?): MaterialDialog? {
@@ -61,13 +77,9 @@ class UIHelper(private val context: Context?) {
       return showLoading(fragment.activity, message)
     }
 
-    fun showLoading(fragment: android.app.Fragment, message: String?): MaterialDialog? {
-      return showLoading(fragment.activity, message)
-    }
-
     private fun getLoadingDialog(hash: Int): MaterialDialog? {
-      val map = instance!!.loadingDialogMap
-      if (!(map == null || map[hash] == null)) {
+      val map = getLoadingDialogMap()
+      if (map[hash] != null) {
         return map[hash]
       }
       return null
@@ -76,7 +88,7 @@ class UIHelper(private val context: Context?) {
     fun removeLoadingDialog(activity: Activity) {
       val hash = activity.hashCode()
       hideLoading(activity)
-      instance!!.loadingDialogMap!!.remove(hash)
+      getLoadingDialogMap().remove(hash)
     }
 
     fun removeLoadingDialog(fragment: Fragment) {
@@ -99,14 +111,14 @@ class UIHelper(private val context: Context?) {
       }
       dialog!!.setContent(msg!!)
       dialog.show()
-      instance!!.loadingDialogMap!![hash] = dialog
+      getLoadingDialogMap()[hash] = dialog
       return dialog
     }
 
     fun hideLoading(ctx: Context?) {
-      val map = instance!!.loadingDialogMap
+      val map = getLoadingDialogMap()
       val hash = ctx!!.hashCode()
-      if (!(map == null || map[hash] == null)) {
+      if (map[hash] != null) {
         hideLoading(map[hash])
       }
     }
@@ -148,7 +160,7 @@ class UIHelper(private val context: Context?) {
 
     fun normalIntent(c: Class<*>): Intent {
       val intent = Intent()
-      intent.setClass(instance!!.context!!, c)
+      intent.setClass(getContext(), c)
       return intent
     }
 
@@ -164,7 +176,7 @@ class UIHelper(private val context: Context?) {
       try {
         val filter = IntentFilter()
         actions.forEach { action -> filter.addAction(action) }
-        instance!!.receiverManager!!.registerReceiver(receiver, filter)
+        getReceiverManager().registerReceiver(receiver, filter)
       } catch (e: Exception) {
         e.printStackTrace()
       }
@@ -172,10 +184,11 @@ class UIHelper(private val context: Context?) {
 
     fun unregisterReceiver(receiver: BroadcastReceiver) {
       try {
-        instance!!.receiverManager!!.unregisterReceiver(receiver)
+        getReceiverManager().unregisterReceiver(receiver)
       } catch (e: Exception) {
         e.printStackTrace()
       }
     }
   }
+
 }

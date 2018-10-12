@@ -7,7 +7,7 @@ package com.chansos.rxandroid.kotlin.rx.support
 import android.app.Activity
 import android.support.v4.app.Fragment
 import com.afollestad.materialdialogs.MaterialDialog
-import com.chansos.rxandroid.kotlin.utils.UIHelper
+import com.chansos.rxandroid.kotlin.utils.ui.UIHelper
 import io.reactivex.Observer
 import io.reactivex.disposables.Disposable
 

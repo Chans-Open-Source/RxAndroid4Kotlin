@@ -10,7 +10,7 @@ abstract class BaseViewPagerFragment : BaseFragment(), Clickable, Initializable 
   private var isPrepared = false
   private var isRequested = false
   private var visible = false
-  private var resumed = false
+  private var pause = true
   override fun initialize() {
     isPrepared = true
   }
@@ -22,36 +22,29 @@ abstract class BaseViewPagerFragment : BaseFragment(), Clickable, Initializable 
 
   override fun setUserVisibleHint(isVisibleToUser: Boolean) {
     super.setUserVisibleHint(isVisibleToUser)
-    if (userVisibleHint) {
-      visible = true
-      onVisible()
-    } else {
-      visible = false
-      onInvisible()
-    }
-  }
-
-  private fun onInvisible() {
-    if (!visible && isPrepared) {
-      resumed = false
-      onPause()
-    }
-  }
-
-  private fun onVisible() {
-    if (isPrepared && visible && !resumed) {
-      resumed = true
-      onResume()
+    visible = userVisibleHint
+    if (isPrepared) {
+      if (visible) {
+        if (pause) {
+          pause = false
+          onResume()
+        }
+      } else {
+        pause = true
+        onPause()
+      }
     }
   }
 
   override fun onResume() {
     super.onResume()
-    if (isPrepared && visible && !isRequested) {
-      isRequested = true
-      onFirstTime()
-    } else if (isPrepared && visible) {
-      onSecondTime()
+    if (isPrepared && visible) {
+      if (isRequested) {
+        onSecondTime()
+      } else {
+        isRequested = true
+        onFirstTime()
+      }
     }
   }
 

@@ -19,20 +19,21 @@ class Presenter : Contract.Presenter {
       RxKotlin
         .create<ProjectModel>(view as BaseFragment)
         .api(RxKotlin.api(Test::class.java).projectList(1, 2))
-        .obs(object : RxKotlin.RxObserver<ProjectModel>(view as BaseFragment) {
-          override fun onNext(t: ProjectModel) {
-            super.onNext(t)
-            LogUtils.d(JSON.toJSONString(t))
-          }
-
-          override fun onError(e: Throwable) {
-            super.onError(e)
-            LogUtils.e(e)
-          }
-
-        })
+        .obs(Obs(view as BaseFragment))
     } catch (e: Exception) {
       e.printStackTrace()
+    }
+  }
+
+  class Obs(fragment: BaseFragment) : RxKotlin.RxObserver<ProjectModel>(fragment) {
+    override fun onNext(t: ProjectModel) {
+      super.onNext(t)
+      LogUtils.d(JSON.toJSONString(t))
+    }
+
+    override fun onError(e: Throwable) {
+      super.onError(e)
+      LogUtils.e(e)
     }
   }
 }

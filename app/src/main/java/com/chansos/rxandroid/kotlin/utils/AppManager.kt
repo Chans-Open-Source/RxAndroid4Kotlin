@@ -11,23 +11,25 @@ import android.support.v7.app.AppCompatActivity
 import java.util.*
 
 @SuppressLint("StaticFieldLeak")
-class AppManager private constructor(private val context: Context) : Stack<Activity>() {
-  private var lastSize = 0
+class AppManager private constructor() : Stack<Activity>() {
+  private var lastSize: Int = 0
+  lateinit var context: Context
 
   companion object {
-    var instance: AppManager? = null
+    var instance: AppManager = AppManager()
+
     fun init(context: Context) {
-      instance = AppManager(context)
+      instance.context = context
     }
 
     fun add(activity: Activity): Activity? {
-      val act = instance!!.push(activity)
-      instance!!.status()
+      val act = instance.push(activity)
+      instance.status()
       return act
     }
 
     fun last(): Activity {
-      return instance!!.lastElement()
+      return instance.lastElement()
     }
 
     fun finish(activity: Activity) {
@@ -38,13 +40,13 @@ class AppManager private constructor(private val context: Context) : Stack<Activ
     }
 
     fun remove(activity: Activity) {
-      instance?.remove(activity)
-      instance?.status()
+      instance.remove(activity)
+      instance.status()
     }
 
     fun exit() {
-      while (instance!!.size > 0) {
-        finish(instance!!.pop())
+      while (instance.size > 0) {
+        finish(instance.pop())
       }
     }
   }

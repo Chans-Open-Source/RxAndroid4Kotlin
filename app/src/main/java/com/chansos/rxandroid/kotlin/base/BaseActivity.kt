@@ -7,7 +7,8 @@ package com.chansos.rxandroid.kotlin.base
 import android.os.Bundle
 import android.view.Menu
 import com.chansos.rxandroid.kotlin.utils.AppManager
-import com.chansos.rxandroid.kotlin.utils.UIHelper
+import com.chansos.rxandroid.kotlin.utils.ObjectSupport
+import com.chansos.rxandroid.kotlin.utils.ui.UIHelper
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity
 
 abstract class BaseActivity : RxAppCompatActivity(), Clickable, Initializable, Autowire {
@@ -27,6 +28,7 @@ abstract class BaseActivity : RxAppCompatActivity(), Clickable, Initializable, A
     super.onDestroy()
     AppManager.remove(self)
     UIHelper.removeLoadingDialog(self)
+    ObjectSupport.destory(self)
   }
 
   override fun onSupportNavigateUp(): Boolean {

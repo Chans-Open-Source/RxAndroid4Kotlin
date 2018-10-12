@@ -10,7 +10,7 @@ import com.chansos.rxandroid.kotlin.anno.LayoutResId
 import com.chansos.rxandroid.kotlin.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_first.*
 
-@LayoutResId(activity_first)
+@LayoutResId(R.layout.activity_first)
 @AutowirePresent("com.chansos.rxandroid.kotlin.module.first.Presenter")
 class FirstActivity : BaseActivity(), Contract.View {
   private lateinit var presenter: Presenter

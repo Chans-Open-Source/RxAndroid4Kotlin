@@ -3,7 +3,7 @@ package com.chansos.rxandroid.kotlin.module.launch
 import android.app.Activity
 import android.os.Handler
 import com.chansos.rxandroid.kotlin.module.first.FirstActivity
-import com.chansos.rxandroid.kotlin.utils.UIHelper
+import com.chansos.rxandroid.kotlin.utils.ui.UIHelper
 
 class Presenter : Contract.Presenter {
   private lateinit var view: Contract.View

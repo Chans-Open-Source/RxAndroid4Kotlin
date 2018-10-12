@@ -8,10 +8,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.chansos.rxandroid.kotlin.utils.ObjectSupport
 import com.trello.rxlifecycle2.components.support.RxFragment
 
 abstract class BaseFragment : RxFragment(), Clickable, Initializable, Autowire {
-  private lateinit var self: BaseFragment
+  protected lateinit var self: BaseFragment
   private var container: ViewGroup? = null
   private lateinit var inflater: LayoutInflater
   lateinit var rootView: View
@@ -33,4 +34,8 @@ abstract class BaseFragment : RxFragment(), Clickable, Initializable, Autowire {
     activity!!.finish()
   }
 
+  override fun onDestroy() {
+    super.onDestroy()
+    ObjectSupport.destory(self)
+  }
 }

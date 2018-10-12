@@ -13,7 +13,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.chansos.rxandroid.kotlin.R
 import java.io.File
 
-class ImageLoader() {
+class ImageLoader {
   companion object {
     private val cacheOptions = createDefaultOptions()
       .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
@@ -23,7 +23,6 @@ class ImageLoader() {
       return RequestOptions()
         .placeholder(R.drawable.ic_svg_picture)
         .error(R.drawable.ic_svg_picture_error)
-//        .centerInside()
         .optionalCenterInside()
     }
 

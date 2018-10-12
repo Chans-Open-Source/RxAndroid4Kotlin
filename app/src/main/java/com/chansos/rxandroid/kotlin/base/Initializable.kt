@@ -4,7 +4,7 @@
 
 package com.chansos.rxandroid.kotlin.base
 
-import com.chansos.rxandroid.kotlin.utils.UIHelper
+import com.chansos.rxandroid.kotlin.utils.ui.UIHelper
 
 interface Initializable {
   fun initialize()
