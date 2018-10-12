@@ -5,7 +5,6 @@
 package com.chansos.rxandroid.kotlin.base
 
 import android.app.Activity
-import android.support.v4.app.Fragment
 import android.text.TextUtils
 import com.chansos.rxandroid.kotlin.anno.AutowirePresent
 import com.chansos.rxandroid.kotlin.anno.PageDefaultOptions

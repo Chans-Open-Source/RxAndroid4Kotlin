@@ -12,7 +12,6 @@ import android.support.v4.view.ViewPager
 import android.view.Menu
 import android.view.MenuItem
 import com.chansos.rxandroid.kotlin.R
-import com.chansos.rxandroid.kotlin.R.layout.activity_second
 import com.chansos.rxandroid.kotlin.anno.LayoutResId
 import com.chansos.rxandroid.kotlin.base.BaseActivity
 import com.chansos.rxandroid.kotlin.utils.ui.UIHelper

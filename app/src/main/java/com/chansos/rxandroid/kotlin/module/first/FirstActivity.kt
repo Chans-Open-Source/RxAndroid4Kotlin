@@ -4,7 +4,6 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import com.chansos.rxandroid.kotlin.R
-import com.chansos.rxandroid.kotlin.R.layout.activity_first
 import com.chansos.rxandroid.kotlin.anno.AutowirePresent
 import com.chansos.rxandroid.kotlin.anno.LayoutResId
 import com.chansos.rxandroid.kotlin.base.BaseActivity
