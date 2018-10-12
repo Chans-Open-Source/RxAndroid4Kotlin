@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">KotlinDemo</string>
+    <string name="app_name">RxAndroid For Kotlin</string>
     <string name="imageView">imageView</string>
     <string name="fetch_data">Fetch Data</string>
     <string name="to_second_page">To Second Page</string>
