@@ -24,36 +24,24 @@ import java.util.concurrent.ConcurrentHashMap
 @SuppressLint("ShowToast")
 class UIHelper {
   companion object {
-    private var instance: UISupport = UISupport()
-    private fun getContext(): Context {
+    private val instance: UISupport by lazy {
+      UISupport()
+    }
+
+    internal fun getContext(): Context {
       return AppManager.instance.context
     }
 
     private fun getToast(): Toast {
-      var toast = instance.toast
-      if (toast == null) {
-        toast = Toast.makeText(getContext(), "", Toast.LENGTH_SHORT)
-        instance.toast = toast
-      }
-      return toast!!
+      return instance.toast
     }
 
     private fun getLoadingDialogMap(): ConcurrentHashMap<Int, MaterialDialog> {
-      var map = instance.loadingDialogMap
-      if (map == null) {
-        map = ConcurrentHashMap()
-        instance.loadingDialogMap = map
-      }
-      return map
+      return instance.loadingDialogMap
     }
 
     private fun getReceiverManager(): LocalBroadcastManager {
-      var rm = instance.receiverManager
-      if (rm == null) {
-        rm = LocalBroadcastManager.getInstance(AppManager.instance.context)
-        instance.receiverManager = rm
-      }
-      return rm
+      return instance.receiverManager
     }
 
     fun showToast(message: CharSequence): Toast? {
@@ -190,5 +178,4 @@ class UIHelper {
       }
     }
   }
-
 }

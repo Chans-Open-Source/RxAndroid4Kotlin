@@ -1,6 +1,8 @@
 package com.chansos.rxandroid.kotlin.utils
 
 import java.lang.reflect.Field
+import java.lang.reflect.Modifier
+import java.lang.reflect.Type
 
 class ObjectSupport {
   companion object {
@@ -33,7 +35,7 @@ class ObjectSupport {
     private fun reset(obj: Any, field: Field) {
       val name = field.name
       val type = field.type.name
-      if (!(name == name.toUpperCase() || type == type.toLowerCase())) {
+      if (!(name == name.toUpperCase() || type == type.toLowerCase() || Modifier.isFinal(field.modifiers))) {
         inject(obj, name, null)
       }
     }

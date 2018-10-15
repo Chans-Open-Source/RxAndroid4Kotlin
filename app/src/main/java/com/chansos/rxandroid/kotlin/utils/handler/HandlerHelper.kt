@@ -9,12 +9,7 @@ class HandlerHelper {
     private val instance = HandlerSupport()
 
     private fun getMap(): ConcurrentHashMap<Int, Handler> {
-      var map = instance.handlerMap
-      if (map == null) {
-        map = ConcurrentHashMap()
-        instance.handlerMap = map
-      }
-      return map
+      return instance.handlerMap
     }
 
     fun create(obj: Any, onHandlerMessage: OnHandlerMessage?): Handler? {

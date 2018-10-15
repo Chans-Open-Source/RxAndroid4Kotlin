@@ -14,7 +14,9 @@ class LogUtils {
     /**
      * 日志标识
      * */
-    private const val TAG = "LogUtils"
+    private val TAG :String by lazy {
+      LogUtils::class.java.simpleName
+    }
 
     /**
      * 日志类型

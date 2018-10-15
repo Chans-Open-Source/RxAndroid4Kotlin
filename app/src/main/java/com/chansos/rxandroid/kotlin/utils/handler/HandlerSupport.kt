@@ -4,5 +4,7 @@ import android.os.Handler
 import java.util.concurrent.ConcurrentHashMap
 
 class HandlerSupport {
-  internal var handlerMap: ConcurrentHashMap<Int, Handler>? = null
+  internal val handlerMap: ConcurrentHashMap<Int, Handler> by lazy {
+    ConcurrentHashMap<Int, Handler> ()
+  }
 }
