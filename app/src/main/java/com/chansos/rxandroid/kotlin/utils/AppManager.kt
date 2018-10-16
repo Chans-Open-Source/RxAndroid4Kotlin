@@ -7,6 +7,7 @@ package com.chansos.rxandroid.kotlin.utils
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
+import android.content.res.Resources
 import android.support.v7.app.AppCompatActivity
 import java.util.*
 
@@ -16,10 +17,18 @@ class AppManager private constructor() : Stack<Activity>() {
   lateinit var context: Context
 
   companion object {
-    var instance: AppManager = AppManager()
+    private var instance: AppManager = AppManager()
 
     fun init(context: Context) {
       instance.context = context
+    }
+
+    fun getContext(): Context {
+      return instance.context
+    }
+
+    fun getResources(): Resources {
+      return getContext().resources
     }
 
     fun add(activity: Activity): Activity? {
@@ -48,11 +57,12 @@ class AppManager private constructor() : Stack<Activity>() {
       while (instance.size > 0) {
         finish(instance.pop())
       }
+      LogUtils.i("Exit at ${System.currentTimeMillis()}")
     }
   }
 
   fun status() {
-    LogUtils.i("App Stack:${this}")
+    LogUtils.i("${AppManager::class.java.simpleName}: ${this}")
     if (lastSize != this.size && this.size > 0 && (get(0) as? AppCompatActivity)?.supportActionBar != null) {
       (get(0) as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(false)
     }

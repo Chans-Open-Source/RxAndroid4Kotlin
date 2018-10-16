@@ -28,9 +28,7 @@ class UIHelper {
       UISupport()
     }
 
-    internal fun getContext(): Context {
-      return AppManager.instance.context
-    }
+    internal fun getContext() = AppManager.getContext()
 
     private fun getToast(): Toast {
       return instance.toast
@@ -176,6 +174,10 @@ class UIHelper {
       } catch (e: Exception) {
         e.printStackTrace()
       }
+    }
+
+    fun <T : View?> get(layout: View, viewId: Int): T {
+      return layout.findViewById<T>(viewId)
     }
   }
 }

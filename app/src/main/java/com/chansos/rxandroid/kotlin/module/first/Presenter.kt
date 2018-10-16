@@ -22,19 +22,14 @@ class Presenter : Contract.Presenter {
   }
 
   override fun fetch() {
-    try {
-      RxKotlin
-        .create<ProjectModel>(view as BaseActivity)
-        .api(RxKotlin.api(Test::class.java).projectList(1, 2))
-        .obs(Obs(view as BaseActivity))
-    } catch (e: Exception) {
-      e.printStackTrace()
-    }
+    RxKotlin
+      .create<ProjectModel>(view as BaseActivity)
+      .api(RxKotlin.api(Test::class.java).projectList(1, 2))
+      .obs(Obs(view as BaseActivity))
   }
 
   class Obs(activity: BaseActivity) : RxKotlin.RxObserver<ProjectModel>(activity) {
     override fun onNext(t: ProjectModel) {
-      super.onNext(t)
       LogUtils.d(JSON.toJSONString(t))
     }
 
@@ -42,5 +37,13 @@ class Presenter : Contract.Presenter {
       super.onError(e)
       LogUtils.e(e)
     }
+  }
+
+  override fun toListPage() {
+    UIHelper.quickTo(com.chansos.rxandroid.kotlin.module.list.ListActivity::class.java, view as BaseActivity)
+  }
+
+  override fun toCrashPage() {
+    UIHelper.quickTo(com.chansos.rxandroid.kotlin.module.crash.CrashActivity::class.java, view as BaseActivity)
   }
 }

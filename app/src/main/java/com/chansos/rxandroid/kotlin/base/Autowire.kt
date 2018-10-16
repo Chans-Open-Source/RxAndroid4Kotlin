@@ -8,6 +8,7 @@ import android.app.Activity
 import android.text.TextUtils
 import com.chansos.rxandroid.kotlin.anno.AutowirePresent
 import com.chansos.rxandroid.kotlin.anno.PageDefaultOptions
+import com.chansos.rxandroid.kotlin.utils.AppManager
 import com.chansos.rxandroid.kotlin.utils.ObjectSupport
 
 interface Autowire {
@@ -29,6 +30,11 @@ interface Autowire {
       }
       if (validOption(annotation.orientation)) {
         this.requestedOrientation = annotation.orientation
+      }
+      if (!TextUtils.isEmpty(annotation.title)) {
+        this.title = annotation.title
+      } else if (validOption(annotation.titleResId)) {
+        this.title = AppManager.getContext().getText(annotation.titleResId)
       }
     }
   }

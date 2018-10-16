@@ -13,11 +13,13 @@ import android.view.Menu
 import android.view.MenuItem
 import com.chansos.rxandroid.kotlin.R
 import com.chansos.rxandroid.kotlin.anno.LayoutResId
+import com.chansos.rxandroid.kotlin.anno.PageDefaultOptions
 import com.chansos.rxandroid.kotlin.base.BaseActivity
 import com.chansos.rxandroid.kotlin.utils.ui.UIHelper
 import kotlinx.android.synthetic.main.activity_second.*
 
 @LayoutResId(R.layout.activity_second)
+@PageDefaultOptions(titleResId = R.string.to_second_page)
 class SecondActivity : BaseActivity(), ViewPager.OnPageChangeListener, TabLayout.OnTabSelectedListener {
   val fragmentList = ArrayList<Fragment>()
   override fun initialize() {

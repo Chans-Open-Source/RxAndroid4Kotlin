@@ -24,6 +24,8 @@ class ImageLoader {
         .placeholder(R.drawable.ic_svg_picture)
         .error(R.drawable.ic_svg_picture_error)
         .optionalCenterInside()
+        .override(AppManager.getResources().getDimensionPixelSize(R.dimen.x720),
+          AppManager.getResources().getDimensionPixelSize(R.dimen.y1080))
     }
 
     fun load(imageView: ImageView, imageUrl: String, activity: Activity) = loader(imageView, imageUrl, activity, false)

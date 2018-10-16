@@ -48,6 +48,7 @@ open class RxObserver<T> : Observer<T> {
   }
 
   override fun onError(e: Throwable) {
+    hideLoading()
   }
 
   override fun onNext(t: T) {

@@ -7,6 +7,7 @@ package com.chansos.rxandroid.kotlin.base
 import android.os.Bundle
 import android.view.Menu
 import com.chansos.rxandroid.kotlin.utils.AppManager
+import com.chansos.rxandroid.kotlin.utils.LogUtils
 import com.chansos.rxandroid.kotlin.utils.ObjectSupport
 import com.chansos.rxandroid.kotlin.utils.handler.HandlerHelper
 import com.chansos.rxandroid.kotlin.utils.ui.UIHelper
@@ -51,5 +52,15 @@ abstract class BaseActivity : RxAppCompatActivity(), Clickable, Initializable, A
       }
     }
     return super.onMenuOpened(featureId, menu)
+  }
+
+  override fun onSaveInstanceState(outState: Bundle?) {
+    super.onSaveInstanceState(outState)
+    LogUtils.d("${this.javaClass.simpleName}:onSaveInstanceState")
+  }
+
+  override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
+    super.onRestoreInstanceState(savedInstanceState)
+    LogUtils.d("${this.javaClass.simpleName}:onRestoreInstanceState")
   }
 }

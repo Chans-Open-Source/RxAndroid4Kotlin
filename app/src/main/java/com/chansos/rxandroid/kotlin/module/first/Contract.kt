@@ -11,5 +11,9 @@ interface Contract : BaseContract {
     fun toSecondPage()
 
     fun exitApp()
+
+    fun toListPage()
+
+    fun toCrashPage()
   }
 }
