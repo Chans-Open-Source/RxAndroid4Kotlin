@@ -8,6 +8,7 @@ import com.chansos.rxandroid.kotlin.module.second.SecondActivity
 import com.chansos.rxandroid.kotlin.rx.RxKotlin
 import com.chansos.rxandroid.kotlin.utils.AppManager
 import com.chansos.rxandroid.kotlin.utils.LogUtils
+import com.chansos.rxandroid.kotlin.utils.sp.SharedPreferencesHelper
 import com.chansos.rxandroid.kotlin.utils.ui.UIHelper
 
 class Presenter : Contract.Presenter {
@@ -45,5 +46,17 @@ class Presenter : Contract.Presenter {
 
   override fun toCrashPage() {
     UIHelper.quickTo(com.chansos.rxandroid.kotlin.module.crash.CrashActivity::class.java, view as BaseActivity)
+  }
+
+  override fun setRandomInfo() {
+    SharedPreferencesHelper.set(javaClass.simpleName, System.currentTimeMillis())
+    val a = HashSet<String>()
+    a.add("1")
+    SharedPreferencesHelper.set(javaClass.simpleName + "1", a)
+  }
+
+  override fun getRandomInfo() {
+    LogUtils.i("xxx ${javaClass.simpleName}: ${SharedPreferencesHelper.get(javaClass.simpleName, Long::class.java, 0L)}")
+    LogUtils.i("xxx ${javaClass.simpleName + "1"}: ${SharedPreferencesHelper.get(javaClass.simpleName + "1", Set::class.java, null)}")
   }
 }

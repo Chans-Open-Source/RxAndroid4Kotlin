@@ -17,6 +17,9 @@ class FirstActivity : BaseActivity(), Contract.View {
   private lateinit var presenter: Presenter
   override fun initialize() {
     bindClick(this.fetch_data, to_second_page, exit_app, to_list_page, to_crash_page)
+
+    presenter.setRandomInfo()
+    presenter.getRandomInfo()
   }
 
   override fun onClick(view: View?) {

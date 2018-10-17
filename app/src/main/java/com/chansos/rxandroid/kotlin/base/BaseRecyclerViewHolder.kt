@@ -11,7 +11,7 @@ import android.widget.TextView
 import com.chansos.rxandroid.kotlin.utils.ImageLoader
 import com.chansos.rxandroid.kotlin.utils.ui.UIHelper
 
-open class BaseRecyclerViewHolder(itemView: View, private val context: Context) : RecyclerView.ViewHolder(itemView) {
+class BaseRecyclerViewHolder(itemView: View, private val context: Context) : RecyclerView.ViewHolder(itemView) {
   companion object {
     internal fun create(itemView: View, parent: ViewGroup): BaseRecyclerViewHolder {
       return BaseRecyclerViewHolder(itemView, parent.context)

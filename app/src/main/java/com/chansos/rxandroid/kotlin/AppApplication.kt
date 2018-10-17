@@ -7,11 +7,13 @@ package com.chansos.rxandroid.kotlin
 import android.support.multidex.MultiDexApplication
 import com.chansos.rxandroid.kotlin.utils.AppManager
 import com.chansos.rxandroid.kotlin.utils.CrashHandler
+import com.chansos.rxandroid.kotlin.utils.sp.SharedPreferencesHelper
 
 class AppApplication : MultiDexApplication() {
   override fun onCreate() {
     super.onCreate()
-    AppManager.init(this.applicationContext)
     CrashHandler.init()
+    AppManager.init(this.applicationContext)
+    SharedPreferencesHelper.init()
   }
 }

@@ -15,5 +15,9 @@ interface Contract : BaseContract {
     fun toListPage()
 
     fun toCrashPage()
+
+    fun setRandomInfo()
+
+    fun getRandomInfo()
   }
 }
