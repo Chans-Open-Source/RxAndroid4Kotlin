@@ -4,14 +4,14 @@
 
 package com.chansos.rxandroid.kotlin.base
 
-import com.chansos.rxandroid.kotlin.utils.ObjectSupport
+import com.chansos.rxandroid.kotlin.utils.ObjectUtils
 
 interface BaseContract {
   interface BaseView
 
   interface BasePresenter {
     fun bind(view: BaseContract.BaseView) {
-      ObjectSupport.inject(this, "view", view)
+      ObjectUtils.inject(this, "view", view)
     }
   }
 }

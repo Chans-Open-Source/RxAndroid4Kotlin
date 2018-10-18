@@ -4,7 +4,7 @@ import java.lang.reflect.Field
 import java.lang.reflect.Modifier
 import java.lang.reflect.Type
 
-class ObjectSupport {
+class ObjectUtils {
   companion object {
     fun inject(obj: Any, fieldName: String, fieldValue: Any?) {
       try {

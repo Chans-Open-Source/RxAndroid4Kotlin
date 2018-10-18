@@ -9,7 +9,7 @@ import android.text.TextUtils
 import com.chansos.rxandroid.kotlin.anno.AutowirePresent
 import com.chansos.rxandroid.kotlin.anno.PageDefaultOptions
 import com.chansos.rxandroid.kotlin.utils.AppManager
-import com.chansos.rxandroid.kotlin.utils.ObjectSupport
+import com.chansos.rxandroid.kotlin.utils.ObjectUtils
 
 interface Autowire {
   fun autowire() {
@@ -47,7 +47,7 @@ interface Autowire {
       val constructor = presenterClass.getConstructor()
       val presenter = constructor.newInstance() as BaseContract.BasePresenter?
       presenter!!.bind(this as BaseContract.BaseView)
-      ObjectSupport.inject(this, "presenter", presenter)
+      ObjectUtils.inject(this, "presenter", presenter)
     }
   }
 }
