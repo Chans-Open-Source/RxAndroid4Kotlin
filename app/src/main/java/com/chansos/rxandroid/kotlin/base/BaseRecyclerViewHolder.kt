@@ -9,9 +9,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.chansos.rxandroid.kotlin.utils.ImageLoader
+import com.chansos.rxandroid.kotlin.utils.ObjectUtils
 import com.chansos.rxandroid.kotlin.utils.ui.UIHelper
 
 class BaseRecyclerViewHolder(itemView: View, private val context: Context) : RecyclerView.ViewHolder(itemView) {
+  private val imageViewList: HashSet<Int> by lazy {
+    HashSet<Int>()
+  }
+
   companion object {
     internal fun create(itemView: View, parent: ViewGroup): BaseRecyclerViewHolder {
       return BaseRecyclerViewHolder(itemView, parent.context)
@@ -32,6 +37,7 @@ class BaseRecyclerViewHolder(itemView: View, private val context: Context) : Rec
     } else if (context is Fragment) {
       ImageLoader.load(get(viewId), image, context)
     }
+    imageViewList.add(viewId)
   }
 
   fun setImage(viewId: Int, image: Int) {
@@ -40,6 +46,7 @@ class BaseRecyclerViewHolder(itemView: View, private val context: Context) : Rec
     } else if (context is Fragment) {
       ImageLoader.load(get(viewId), image, context)
     }
+    imageViewList.add(viewId)
   }
 
   fun setText(viewId: Int, content: String) {
@@ -48,5 +55,18 @@ class BaseRecyclerViewHolder(itemView: View, private val context: Context) : Rec
 
   fun setText(viewId: Int, content: Int) {
     (get(viewId) as TextView).setText(content)
+  }
+
+  fun release() {
+    imageViewList.forEach { viewId ->
+      run {
+        if (context is Activity && !context.isDestroyed) {
+          ImageLoader.release(get(viewId), context)
+        } else if (context is Fragment && !context.isDetached) {
+          ImageLoader.release(get(viewId), context)
+        }
+      }
+    }
+    ObjectUtils.destory(this)
   }
 }

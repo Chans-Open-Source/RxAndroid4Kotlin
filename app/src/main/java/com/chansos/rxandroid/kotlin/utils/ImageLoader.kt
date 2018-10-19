@@ -69,5 +69,13 @@ class ImageLoader {
       }
       builder.apply(options).into(imageView)
     }
+
+    fun release(imageView: ImageView, activity: Activity) = Glide.with(activity).clear(imageView)
+
+    fun release(imageView: ImageView, fragment: Fragment) = Glide.with(fragment).clear(imageView)
+
+    fun clearDiskCache() = Glide.get(AppManager.getContext()).clearDiskCache()
+
+    fun clearMemory() = Glide.get(AppManager.getContext()).clearMemory()
   }
 }

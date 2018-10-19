@@ -31,10 +31,13 @@ class AppManager private constructor() : Stack<Activity>() {
       return getContext().resources
     }
 
-    fun add(activity: Activity): Activity? {
-      val act = instance.push(activity)
-      instance.status()
-      return act
+    fun add(activity: Activity): Activity {
+      var act: Activity? = null
+      synchronized(instance) {
+        act = instance.push(activity)
+        instance.status()
+      }
+      return act!!
     }
 
     fun last(): Activity {
@@ -43,14 +46,20 @@ class AppManager private constructor() : Stack<Activity>() {
 
     fun finish(activity: Activity) {
       if (!activity.isFinishing) {
-        activity.finish()
+        synchronized(instance) {
+          if (!activity.isFinishing) {
+            activity.finish()
+          }
+        }
       }
       remove(activity)
     }
 
     fun remove(activity: Activity) {
-      instance.remove(activity)
-      instance.status()
+      synchronized(instance) {
+        instance.remove(activity)
+        instance.status()
+      }
     }
 
     fun exit() {

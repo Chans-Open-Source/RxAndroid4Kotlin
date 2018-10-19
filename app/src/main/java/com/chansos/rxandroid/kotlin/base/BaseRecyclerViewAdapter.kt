@@ -3,10 +3,14 @@ package com.chansos.rxandroid.kotlin.base
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
+import com.chansos.rxandroid.kotlin.utils.ObjectUtils
 
 abstract class BaseRecyclerViewAdapter<T> : RecyclerView.Adapter<BaseRecyclerViewHolder>() {
   private val dataList: ArrayList<T> by lazy {
     ArrayList<T>()
+  }
+  private val viewHolderList: ArrayList<BaseRecyclerViewHolder> by lazy {
+    ArrayList<BaseRecyclerViewHolder>()
   }
   var onItemClickListener: BaseRecyclerViewAdapter.OnItemClickListener? = null
   var onItemLongClickListener: BaseRecyclerViewAdapter.OnItemLongClickListener? = null
@@ -22,7 +26,9 @@ abstract class BaseRecyclerViewAdapter<T> : RecyclerView.Adapter<BaseRecyclerVie
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseRecyclerViewHolder {
     val view = BaseRecyclerViewHolder.createView(parent, getRootLayoutResId())
     onViewCreate(view)
-    return BaseRecyclerViewHolder.create(view, parent)
+    val viewHolder = BaseRecyclerViewHolder.create(view, parent)
+    viewHolderList.add(viewHolder)
+    return viewHolder
   }
 
   override fun onBindViewHolder(viewHolder: BaseRecyclerViewHolder, position: Int) {
@@ -53,6 +59,15 @@ abstract class BaseRecyclerViewAdapter<T> : RecyclerView.Adapter<BaseRecyclerVie
   fun appendDataList(list: ArrayList<T>) {
     dataList.addAll(list)
     notifyDataSetChanged()
+  }
+
+  fun release() {
+    viewHolderList.forEach { viewHolder ->
+      run {
+        viewHolder.release()
+      }
+    }
+    ObjectUtils.destory(this)
   }
 
   abstract fun getRootLayoutResId(): Int
