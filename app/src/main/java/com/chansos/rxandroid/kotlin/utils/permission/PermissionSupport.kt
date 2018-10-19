@@ -6,7 +6,7 @@ import com.chansos.rxandroid.kotlin.utils.AppManager
 
 class PermissionSupport {
   companion object {
-    private const val REQUEST_CODE = 0x1024
+    const val REQUEST_CODE = 0x400
   }
 
   fun check(permission: String): Boolean {
