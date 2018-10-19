@@ -1,5 +1,6 @@
 package com.chansos.rxandroid.kotlin.module.first
 
+import android.Manifest
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -8,7 +9,10 @@ import com.chansos.rxandroid.kotlin.anno.AutowirePresent
 import com.chansos.rxandroid.kotlin.anno.LayoutResId
 import com.chansos.rxandroid.kotlin.anno.PageDefaultOptions
 import com.chansos.rxandroid.kotlin.base.BaseActivity
+import com.chansos.rxandroid.kotlin.utils.LogUtils
+import com.chansos.rxandroid.kotlin.utils.permission.PermissionHelper
 import kotlinx.android.synthetic.main.activity_first.*
+import java.util.*
 
 @LayoutResId(R.layout.activity_first)
 @AutowirePresent("com.chansos.rxandroid.kotlin.module.first.Presenter")
@@ -20,6 +24,9 @@ class FirstActivity : BaseActivity(), Contract.View {
 
     presenter.setRandomInfo()
     presenter.getRandomInfo()
+
+    LogUtils.i("Storage permission: ${PermissionHelper.check(Manifest.permission_group.STORAGE)}")
+    PermissionHelper.request(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
   }
 
   override fun onClick(view: View?) {
@@ -44,5 +51,9 @@ class FirstActivity : BaseActivity(), Contract.View {
       R.id.exit_app -> presenter.exitApp()
     }
     return true
+  }
+
+  override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+    LogUtils.i("xxx $requestCode ${Arrays.toString(permissions)} ${Arrays.toString(grantResults)}")
   }
 }
