@@ -4,5 +4,8 @@
 
 package com.chansos.rxandroid.kotlin.anno
 
+/**
+ * 配置Activity,Fragment的ContentViewLayoutId
+ * */
 @Target(AnnotationTarget.CLASS, AnnotationTarget.FILE)
 annotation class LayoutResId(val id: Int)

@@ -11,46 +11,67 @@ import com.chansos.rxandroid.kotlin.utils.ui.UIHelper
 import io.reactivex.Observer
 import io.reactivex.disposables.Disposable
 
+/**
+ * 接口观察者
+ * */
 open class RxObserver<T> : Observer<T> {
-  private var activity: Activity
-  private var isShowLoading: Boolean
-  private var loadingDialog: MaterialDialog? = null
+    private var activity: Activity
+    private var isShowLoading: Boolean
+    private var loadingDialog: MaterialDialog? = null
 
-  constructor(activity: Activity?, isShowLoading: Boolean) {
-    this.activity = activity!!
-    this.isShowLoading = isShowLoading
-  }
-
-  constructor(fragment: Fragment?, isShowLoading: Boolean) : this(fragment!!.activity!!, isShowLoading)
-
-  constructor(activity: Activity?) : this(activity, true)
-
-  constructor(fragment: Fragment?) : this(fragment, true)
-
-  override fun onSubscribe(d: Disposable) {
-    if (isShowLoading) {
-      showLoading()
+    constructor(activity: Activity?, isShowLoading: Boolean) {
+        this.activity = activity!!
+        this.isShowLoading = isShowLoading
     }
-  }
 
-  override fun onComplete() {
-    if (isShowLoading) {
-      hideLoading()
+    constructor(fragment: Fragment?, isShowLoading: Boolean) : this(fragment!!.activity!!, isShowLoading)
+
+    constructor(activity: Activity?) : this(activity, true)
+
+    constructor(fragment: Fragment?) : this(fragment, true)
+
+    /**
+     * 接口调用时
+     * */
+    override fun onSubscribe(d: Disposable) {
+        if (isShowLoading) {
+            showLoading()
+        }
     }
-  }
 
-  open fun showLoading() {
-    this.loadingDialog = UIHelper.showLoading(activity, null)
-  }
+    /**
+     * 接口调用完成
+     * */
+    override fun onComplete() {
+        if (isShowLoading) {
+            hideLoading()
+        }
+    }
 
-  open fun hideLoading() {
-    UIHelper.hideLoading(activity)
-  }
+    /**
+     * 显示加载提示
+     * */
+    open fun showLoading() {
+        this.loadingDialog = UIHelper.showLoading(activity, null)
+    }
 
-  override fun onError(e: Throwable) {
-    hideLoading()
-  }
+    /**
+     * 隐藏加载提示
+     * */
+    open fun hideLoading() {
+        UIHelper.hideLoading(activity)
+    }
 
-  override fun onNext(t: T) {
-  }
+    /**
+     * 接口调用异常
+     * */
+    override fun onError(e: Throwable) {
+        hideLoading()
+    }
+
+    /**
+     * 接口调用成功
+     * */
+    override fun onNext(t: T) {
+    }
 }

@@ -13,69 +13,178 @@ import com.bumptech.glide.request.RequestOptions
 import com.chansos.rxandroid.kotlin.R
 import java.io.File
 
+/**
+ * 图片加载器
+ * 使用Glide项目封装
+ * */
 class ImageLoader {
-  companion object {
-    private val cacheOptions = createDefaultOptions()
-      .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-    private val noCacheOptions = createDefaultOptions()
+    companion object {
+        /**
+         * 缓存加载器选项
+         * */
+        private val cacheOptions = createDefaultOptions()
+                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+        /**
+         * 无缓存加载器选项
+         * */
+        private val noCacheOptions = createDefaultOptions()
 
-    private fun createDefaultOptions(): RequestOptions {
-      return RequestOptions()
-        .placeholder(R.drawable.ic_svg_picture)
-        .error(R.drawable.ic_svg_picture_error)
-        .optionalCenterInside()
-        .override(AppManager.getResources().getDimensionPixelSize(R.dimen.x720),
-          AppManager.getResources().getDimensionPixelSize(R.dimen.y1080))
+        /**
+         * 创建通用加载器选项
+         * */
+        private fun createDefaultOptions(): RequestOptions {
+            return RequestOptions()
+                    .placeholder(R.drawable.ic_svg_picture)
+                    .error(R.drawable.ic_svg_picture_error)
+                    .optionalCenterInside()
+                    .override(AppManager.getResources().getDimensionPixelSize(R.dimen.x720),
+                            AppManager.getResources().getDimensionPixelSize(R.dimen.y1080))
+        }
+
+        /**
+         * 加载图片
+         *
+         * @param imageView ImageView实例
+         * @param imageUrl 要加载的图片
+         * @param activity ImageView所属的Activity实例
+         * */
+        fun load(imageView: ImageView, imageUrl: String, activity: Activity) = loader(imageView, imageUrl, activity, false)
+
+        /**
+         * 无缓存加载图片
+         *
+         * @param imageView ImageView实例
+         * @param imageUrl 要加载的图片
+         * @param activity ImageView所属的Activity实例
+         * */
+        fun noCacheLoad(imageView: ImageView, imageUrl: String, activity: Activity) = loader(imageView, imageUrl, activity, true)
+
+        /**
+         * 加载图片
+         *
+         * @param imageView ImageView实例
+         * @param imageUrl 要加载的图片
+         * @param fragment ImageView所属的Fragment实例
+         * */
+        fun load(imageView: ImageView, imageUrl: String, fragment: Fragment) = loader(imageView, imageUrl, fragment, false)
+
+        /**
+         * 无缓存加载图片
+         *
+         * @param imageView ImageView实例
+         * @param imageUrl 要加载的图片
+         * @param fragment ImageView所属的Fragment实例
+         * */
+        fun noCacheLoad(imageView: ImageView, imageUrl: String, fragment: Fragment) = loader(imageView, imageUrl, fragment, true)
+
+        /**
+         * 加载图片
+         *
+         * @param imageView ImageView实例
+         * @param imageResId 要加载的图片
+         * @param activity ImageView所属的Activity实例
+         * */
+        fun load(imageView: ImageView, imageResId: Int, activity: Activity) = loader(imageView, imageResId, activity, true)
+
+        /**
+         * 加载图片
+         *
+         * @param imageView ImageView实例
+         * @param imageResId 要加载的图片
+         * @param fragment ImageView所属的Fragment实例
+         * */
+        fun load(imageView: ImageView, imageResId: Int, fragment: Fragment) = loader(imageView, imageResId, fragment, true)
+
+        /**
+         * 加载图片
+         *
+         * @param imageView ImageView实例
+         * @param file 要加载的图片
+         * @param activity ImageView所属的Activity实例
+         * */
+        fun load(imageView: ImageView, file: File, activity: Activity) = loader(imageView, file, activity, true)
+
+        /**
+         * 加载图片
+         *
+         * @param imageView ImageView实例
+         * @param file 要加载的图片
+         * @param fragment ImageView所属的Fragment实例
+         * */
+        fun load(imageView: ImageView, file: File, fragment: Fragment) = loader(imageView, file, fragment, true)
+
+        /**
+         * 加载图片
+         *
+         * @param imageView ImageView实例
+         * @param drawable 要加载的图片
+         * @param activity ImageView所属的Activity实例
+         * */
+        fun load(imageView: ImageView, drawable: Drawable, activity: Activity) = loader(imageView, drawable, activity, true)
+
+        /**
+         * 加载图片
+         *
+         * @param imageView ImageView实例
+         * @param drawable 要加载的图片
+         * @param fragment ImageView所属的Fragment实例
+         * */
+        fun load(imageView: ImageView, drawable: Drawable, fragment: Fragment) = loader(imageView, drawable, fragment, true)
+
+        /**
+         * 加载图片
+         *
+         * @param imageView ImageView实例
+         * @param imageUrl 要加载的图片
+         * @param obj ImageView所属的上下文实例
+         * @param isNoCache 是否无缓存加载（默认为否）
+         * */
+        private fun loader(imageView: ImageView, imageUrl: Any, obj: Any, isNoCache: Boolean = false) {
+            val glide = when (obj) {
+                is Fragment -> Glide.with(obj)
+                is Activity -> Glide.with(obj)
+                is View -> Glide.with(obj)
+                else -> Glide.with(AppManager.last())
+            }
+            val options: RequestOptions = when (isNoCache) {
+                true -> noCacheOptions
+                false -> cacheOptions
+            }
+            val builder = when (imageUrl) {
+                is File -> glide.load(imageUrl)
+                is Uri -> glide.load(imageUrl)
+                is Int -> glide.load(imageUrl)
+                is Drawable -> glide.load(imageUrl)
+                is Bitmap -> glide.load(imageUrl)
+                else -> glide.load(imageUrl as String)
+            }
+            builder.apply(options).into(imageView)
+        }
+
+        /**
+         * 释放ImageView中的drawable
+         *
+         * @param imageView ImageView实例
+         * @param activity ImageView所属的Activity实例
+         * */
+        fun release(imageView: ImageView, activity: Activity) = Glide.with(activity).clear(imageView)
+
+        /**
+         * 释放ImageView中的drawable
+         *
+         * @param imageView ImageView实例
+         * @param fragment ImageView所属的Fragment实例
+         * */
+        fun release(imageView: ImageView, fragment: Fragment) = Glide.with(fragment).clear(imageView)
+
+        /**
+         * 清空磁盘中的图片缓存
+         * */
+        fun clearDiskCache() = Glide.get(AppManager.getContext()).clearDiskCache()
+
+        /**
+         * 清空内存中的图片缓存
+         * */
+        fun clearMemory() = Glide.get(AppManager.getContext()).clearMemory()
     }
-
-    fun load(imageView: ImageView, imageUrl: String, activity: Activity) = loader(imageView, imageUrl, activity, false)
-
-    fun noCacheLoad(imageView: ImageView, imageUrl: String, activity: Activity) = loader(imageView, imageUrl, activity, true)
-
-    fun load(imageView: ImageView, imageUrl: String, fragment: Fragment) = loader(imageView, imageUrl, fragment, false)
-
-    fun noCacheLoad(imageView: ImageView, imageUrl: String, fragment: Fragment) = loader(imageView, imageUrl, fragment, true)
-
-    fun load(imageView: ImageView, imageResId: Int, activity: Activity) = loader(imageView, imageResId, activity, true)
-
-    fun load(imageView: ImageView, imageResId: Int, fragment: Fragment) = loader(imageView, imageResId, fragment, true)
-
-    fun load(imageView: ImageView, file: File, activity: Activity) = loader(imageView, file, activity, true)
-
-    fun load(imageView: ImageView, file: File, fragment: Fragment) = loader(imageView, file, fragment, true)
-
-    fun load(imageView: ImageView, drawable: Drawable, activity: Activity) = loader(imageView, drawable, activity, true)
-
-    fun load(imageView: ImageView, drawable: Drawable, fragment: Fragment) = loader(imageView, drawable, fragment, true)
-
-    private fun loader(imageView: ImageView, imageUrl: Any, obj: Any, isNoCache: Boolean = false) {
-      val glide = when (obj) {
-        is Fragment -> Glide.with(obj)
-        is Activity -> Glide.with(obj)
-        is View -> Glide.with(obj)
-        else -> Glide.with(AppManager.last())
-      }
-      val options: RequestOptions = when (isNoCache) {
-        true -> noCacheOptions
-        false -> cacheOptions
-      }
-      val builder = when (imageUrl) {
-        is File -> glide.load(imageUrl)
-        is Uri -> glide.load(imageUrl)
-        is Int -> glide.load(imageUrl)
-        is Drawable -> glide.load(imageUrl)
-        is Bitmap -> glide.load(imageUrl)
-        else -> glide.load(imageUrl as String)
-      }
-      builder.apply(options).into(imageView)
-    }
-
-    fun release(imageView: ImageView, activity: Activity) = Glide.with(activity).clear(imageView)
-
-    fun release(imageView: ImageView, fragment: Fragment) = Glide.with(fragment).clear(imageView)
-
-    fun clearDiskCache() = Glide.get(AppManager.getContext()).clearDiskCache()
-
-    fun clearMemory() = Glide.get(AppManager.getContext()).clearMemory()
-  }
 }

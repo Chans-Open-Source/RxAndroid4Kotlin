@@ -4,5 +4,8 @@
 
 package com.chansos.rxandroid.kotlin.anno
 
+/**
+ * 自动装配Presenter
+ * */
 @Target(AnnotationTarget.CLASS, AnnotationTarget.FILE)
 annotation class AutowirePresent(val path: String)

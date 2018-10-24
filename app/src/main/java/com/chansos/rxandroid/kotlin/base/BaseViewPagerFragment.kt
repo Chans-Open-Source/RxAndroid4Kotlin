@@ -6,51 +6,64 @@ package com.chansos.rxandroid.kotlin.base
 
 import android.os.Bundle
 
+/**
+ * 用于ViewPager的Fragment
+ * 加入了懒加载功能
+ * */
 abstract class BaseViewPagerFragment : BaseFragment(), Clickable, Initializable {
-  private var isPrepared = false
-  private var isRequested = false
-  private var visible = false
-  private var pause = true
-  override fun initialize() {
-    isPrepared = true
-  }
+    private var isPrepared = false
+    private var isRequested = false
+    private var visible = false
+    private var pause = true
+    override fun initialize() {
+        isPrepared = true
+    }
 
-  override fun onActivityCreated(savedInstanceState: Bundle?) {
-    super.onActivityCreated(savedInstanceState)
-    onInitialize()
-  }
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        onInitialize()
+    }
 
-  override fun setUserVisibleHint(isVisibleToUser: Boolean) {
-    super.setUserVisibleHint(isVisibleToUser)
-    visible = userVisibleHint
-    if (isPrepared) {
-      if (visible) {
-        if (pause) {
-          pause = false
-          onResume()
+    override fun setUserVisibleHint(isVisibleToUser: Boolean) {
+        super.setUserVisibleHint(isVisibleToUser)
+        visible = userVisibleHint
+        if (isPrepared) {
+            if (visible) {
+                if (pause) {
+                    pause = false
+                    onResume()
+                }
+            } else {
+                pause = true
+                onPause()
+            }
         }
-      } else {
-        pause = true
-        onPause()
-      }
     }
-  }
 
-  override fun onResume() {
-    super.onResume()
-    if (isPrepared && visible) {
-      if (isRequested) {
-        onSecondTime()
-      } else {
-        isRequested = true
-        onFirstTime()
-      }
+    override fun onResume() {
+        super.onResume()
+        if (isPrepared && visible) {
+            if (isRequested) {
+                onSecondTime()
+            } else {
+                isRequested = true
+                onFirstTime()
+            }
+        }
     }
-  }
 
-  protected abstract fun onInitialize()
+    /**
+     * 初始化事件
+     * */
+    protected abstract fun onInitialize()
 
-  protected open fun onFirstTime() {}
+    /**
+     * 首次加载事件
+     * */
+    protected open fun onFirstTime() {}
 
-  protected open fun onSecondTime() {}
+    /**
+     * 二次加载事件
+     * */
+    protected open fun onSecondTime() {}
 }
