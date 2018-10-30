@@ -4,6 +4,7 @@ import android.app.Activity
 import android.support.v4.app.ActivityCompat
 import com.chansos.rxandroid.kotlin.utils.AppManager
 
+@Suppress("UNCHECKED_CAST", "MemberVisibilityCanBePrivate", "unused")
 class PermissionSupport {
   companion object {
     const val REQUEST_CODE = 0x400

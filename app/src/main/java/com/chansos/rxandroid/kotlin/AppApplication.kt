@@ -10,6 +10,7 @@ import com.chansos.rxandroid.kotlin.utils.AppManager
 /**
  * 安卓应用根实例
  * */
+@Suppress("UNCHECKED_CAST", "MemberVisibilityCanBePrivate", "unused")
 class AppApplication : MultiDexApplication() {
     override fun onCreate() {
         super.onCreate()

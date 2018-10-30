@@ -7,6 +7,7 @@ import java.lang.reflect.Modifier
  * 对象操作工具
  * 使用反射对对象进行操作
  * */
+@Suppress("UNCHECKED_CAST", "MemberVisibilityCanBePrivate", "unused")
 class ObjectUtils {
     companion object {
         /**

@@ -12,6 +12,7 @@ import com.chansos.rxandroid.kotlin.utils.ImageLoader
 import com.chansos.rxandroid.kotlin.utils.support.ObjectUtils
 import com.chansos.rxandroid.kotlin.utils.ui.UIHelper
 
+@Suppress("UNCHECKED_CAST", "MemberVisibilityCanBePrivate", "unused")
 class BaseRecyclerViewHolder(itemView: View, private val context: Context) : RecyclerView.ViewHolder(itemView) {
     private val imageViewList: HashSet<Int> by lazy {
         HashSet<Int>()

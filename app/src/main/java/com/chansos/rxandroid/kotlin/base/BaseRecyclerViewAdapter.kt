@@ -8,6 +8,7 @@ import com.chansos.rxandroid.kotlin.utils.support.ObjectUtils
 /**
  * 通用的RecyclerView适配器
  * */
+@Suppress("UNCHECKED_CAST", "MemberVisibilityCanBePrivate", "unused")
 abstract class BaseRecyclerViewAdapter<T> : RecyclerView.Adapter<BaseRecyclerViewHolder>() {
     private val dataList: ArrayList<T> by lazy {
         ArrayList<T>()

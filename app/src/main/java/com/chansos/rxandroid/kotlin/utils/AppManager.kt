@@ -18,6 +18,7 @@ import java.util.*
  * 记录与操作Activity实例
  * */
 @SuppressLint("StaticFieldLeak")
+@Suppress("UNCHECKED_CAST", "MemberVisibilityCanBePrivate", "unused")
 class AppManager private constructor() : Stack<Activity>() {
     /**
      * 标记Activity栈的最后高度

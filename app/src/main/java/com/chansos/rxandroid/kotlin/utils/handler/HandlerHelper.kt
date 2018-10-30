@@ -6,6 +6,7 @@ import android.os.Message
 /**
  * Handler操作工具
  * */
+@Suppress("UNCHECKED_CAST", "MemberVisibilityCanBePrivate", "unused")
 class HandlerHelper {
     companion object {
         private val instance = HandlerSupport()

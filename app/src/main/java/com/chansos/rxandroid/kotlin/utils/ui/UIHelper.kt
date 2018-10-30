@@ -18,6 +18,7 @@ import com.chansos.rxandroid.kotlin.utils.AppManager
  * UI操作工具
  * 用于控制Layout中的UI，以及Toast、LoadingDialog、Dialog等
  * */
+@Suppress("UNCHECKED_CAST", "MemberVisibilityCanBePrivate", "unused")
 class UIHelper {
     companion object {
         private val instance: UISupport by lazy {
@@ -57,7 +58,7 @@ class UIHelper {
          *
          * @return 加载对话框实例
          * */
-        fun showLoading(activity: Activity?, message: String?): MaterialDialog? = instance.showLoading(activity, message)
+        fun showLoading(activity: Activity, message: String = UISupport.DEFAULT_LOADING_MESSAGE): MaterialDialog? = instance.showLoading(activity, message)
 
         /**
          * 显示加载对话框
@@ -67,7 +68,7 @@ class UIHelper {
          *
          * @return 加载对话框实例
          * */
-        fun showLoading(fragment: Fragment, message: String?): MaterialDialog? = instance.showLoading(fragment, message)
+        fun showLoading(fragment: Fragment, message: String = UISupport.DEFAULT_LOADING_MESSAGE): MaterialDialog? = instance.showLoading(fragment, message)
 
         /**
          * 移除某个Activity实例中的加载对话框实例
@@ -88,7 +89,7 @@ class UIHelper {
          *
          * @param ctx 上下文实例
          * */
-        fun hideLoading(ctx: Context?) = instance.hideLoading(ctx)
+        fun hideLoading(ctx: Context) = instance.hideLoading(ctx)
 
         /**
          * 隐藏加载对话框

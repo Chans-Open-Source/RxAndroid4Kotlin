@@ -9,6 +9,7 @@ import com.chansos.rxandroid.kotlin.utils.support.ObjectUtils
 /**
  * MVP项目结构的合约接口
  * */
+@Suppress("UNCHECKED_CAST", "MemberVisibilityCanBePrivate", "unused")
 interface BaseContract {
   interface BaseView
 

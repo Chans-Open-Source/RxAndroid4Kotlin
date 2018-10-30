@@ -3,6 +3,7 @@ package com.chansos.rxandroid.kotlin.utils.sp
 /**
  * SharedPreferences操作工具
  * */
+@Suppress("UNCHECKED_CAST", "MemberVisibilityCanBePrivate", "unused")
 class SharedPreferencesHelper {
   companion object {
     private val instance: SharedPreferencesSupport by lazy {

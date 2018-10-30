@@ -9,6 +9,7 @@ import com.chansos.rxandroid.kotlin.utils.ui.UIHelper
 /**
  * 可初始化的
  * */
+@Suppress("UNCHECKED_CAST", "MemberVisibilityCanBePrivate", "unused")
 interface Initializable {
     /**
      * 初始化

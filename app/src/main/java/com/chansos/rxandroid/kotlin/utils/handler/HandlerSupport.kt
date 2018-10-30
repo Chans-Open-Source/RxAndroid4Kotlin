@@ -4,6 +4,7 @@ import android.os.Handler
 import android.os.Message
 import java.util.concurrent.ConcurrentHashMap
 
+@Suppress("UNCHECKED_CAST", "MemberVisibilityCanBePrivate", "unused")
 class HandlerSupport {
     private val handlerMapper: ConcurrentHashMap<Int, Handler> by lazy {
         ConcurrentHashMap<Int, Handler>()

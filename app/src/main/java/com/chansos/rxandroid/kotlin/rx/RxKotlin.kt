@@ -9,6 +9,7 @@ import com.chansos.rxandroid.kotlin.base.BaseFragment
 import com.chansos.rxandroid.kotlin.rx.service.Service
 import com.chansos.rxandroid.kotlin.rx.service.ServiceHelper
 
+@Suppress("UNCHECKED_CAST", "MemberVisibilityCanBePrivate", "unused")
 class RxKotlin {
     companion object {
         /**

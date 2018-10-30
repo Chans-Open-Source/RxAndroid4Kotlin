@@ -10,6 +10,7 @@ import com.chansos.rxandroid.kotlin.utils.ui.UIHelper
 /**
  * 可点击
  * */
+@Suppress("UNCHECKED_CAST", "MemberVisibilityCanBePrivate", "unused")
 interface Clickable : View.OnClickListener, View.OnLongClickListener {
     /**
      * 绑定点击事件

@@ -5,6 +5,7 @@ import android.app.Activity
 /**
  * 权限管理工具
  * */
+@Suppress("UNCHECKED_CAST", "MemberVisibilityCanBePrivate", "unused")
 class PermissionHelper {
     companion object {
         private val instance: PermissionSupport by lazy {

@@ -6,6 +6,7 @@ import com.chansos.rxandroid.kotlin.utils.AppManager
  * 应用崩溃处理器
  * 处理未被捕捉的异常
  * */
+@Suppress("UNCHECKED_CAST", "MemberVisibilityCanBePrivate", "unused")
 class CrashHandler : Thread.UncaughtExceptionHandler {
     /**
      * 默认异常处理器实例

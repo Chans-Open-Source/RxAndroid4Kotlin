@@ -7,6 +7,7 @@ import android.support.v4.content.LocalBroadcastManager
 import com.chansos.rxandroid.kotlin.utils.AppManager
 import com.chansos.rxandroid.kotlin.utils.ui.UIHelper
 
+@Suppress("UNCHECKED_CAST", "MemberVisibilityCanBePrivate", "unused")
 class BroadcastSupport {
   internal val receiverManager: LocalBroadcastManager by lazy {
     LocalBroadcastManager.getInstance(UIHelper.getContext())

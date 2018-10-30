@@ -14,6 +14,7 @@ import com.chansos.rxandroid.kotlin.utils.support.ObjectUtils
 /**
  * 自动装配
  * */
+@Suppress("UNCHECKED_CAST", "MemberVisibilityCanBePrivate", "unused")
 interface Autowire {
     fun autowire() {
         autowirePageDefaultOptions()

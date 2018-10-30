@@ -17,6 +17,7 @@ import java.io.File
  * 图片加载器
  * 使用Glide项目封装
  * */
+@Suppress("UNCHECKED_CAST", "MemberVisibilityCanBePrivate", "unused")
 class ImageLoader {
     companion object {
         /**

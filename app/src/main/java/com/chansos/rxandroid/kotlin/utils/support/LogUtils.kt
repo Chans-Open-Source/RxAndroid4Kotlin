@@ -9,6 +9,7 @@ import android.util.Log
 /**
  * 日志工具
  * */
+@Suppress("UNCHECKED_CAST", "MemberVisibilityCanBePrivate", "unused")
 class LogUtils {
     companion object {
         /**

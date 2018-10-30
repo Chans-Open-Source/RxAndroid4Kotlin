@@ -7,7 +7,6 @@ import android.content.Intent
 import android.os.Message
 import android.support.annotation.StringRes
 import android.support.v4.app.Fragment
-import android.text.TextUtils
 import android.view.View
 import android.widget.Toast
 import com.afollestad.materialdialogs.MaterialDialog
@@ -19,10 +18,12 @@ import com.chansos.rxandroid.kotlin.utils.handler.OnHandlerMessage
 import java.util.concurrent.ConcurrentHashMap
 
 @SuppressLint("ShowToast")
+@Suppress("UNCHECKED_CAST", "MemberVisibilityCanBePrivate", "unused")
 class UISupport : OnHandlerMessage {
     companion object {
         private const val HIDE_LOADING_DELAY = 300L
         private const val HIDE_LOADING = 0x1
+        internal const val DEFAULT_LOADING_MESSAGE = "请稍等..."
     }
 
     init {
@@ -46,16 +47,9 @@ class UISupport : OnHandlerMessage {
 
     fun showToast(@StringRes strResId: Int): Toast? = showToast(AppManager.getResources().getString(strResId))
 
-    fun showLoading(ctx: Activity?, message: String?): MaterialDialog? = showLoadingByContext(ctx, message)
+    fun showLoading(activity: Activity, message: String = DEFAULT_LOADING_MESSAGE): MaterialDialog = showLoadingByContext(activity, message)
 
-    fun showLoading(fragment: Fragment, message: String?): MaterialDialog? = showLoading(fragment.activity, message)
-
-    private fun getLoadingDialog(hash: Int): MaterialDialog? {
-        if (loadingDialogMapper[hash] != null) {
-            return loadingDialogMapper[hash]
-        }
-        return null
-    }
+    fun showLoading(fragment: Fragment, message: String = DEFAULT_LOADING_MESSAGE): MaterialDialog = showLoading(fragment.activity!!, message)
 
     fun removeLoadingDialog(activity: Activity) {
         val hash = activity.hashCode()
@@ -65,30 +59,25 @@ class UISupport : OnHandlerMessage {
 
     fun removeLoadingDialog(fragment: Fragment) = removeLoadingDialog(fragment.activity!!)
 
-    private fun showLoadingByContext(ctx: Context?, message: String?): MaterialDialog? {
-        var msg = message
-        if (TextUtils.isEmpty(message)) {
-            msg = "请稍等..."
-        }
-        val hash = ctx!!.hashCode()
-        var dialog = getLoadingDialog(hash)
-        if (dialog == null) {
-            dialog = MaterialDialog
-                    .Builder(ctx)
-                    .cancelable(false)
-                    .progress(true, 0)
-                    .show()
-        }
-        dialog!!.setContent(msg!!)
+    private fun getDialogByContext(ctx: Context): MaterialDialog? {
+        return loadingDialogMapper[ctx.hashCode()]
+    }
+
+    private fun showLoadingByContext(ctx: Context, message: String): MaterialDialog {
+        val dialog = getDialogByContext(ctx) ?: MaterialDialog
+                .Builder(ctx)
+                .cancelable(false)
+                .progress(true, 0)
+                .show()
+        dialog.setContent(message)
         dialog.show()
-        loadingDialogMapper[hash] = dialog
+        loadingDialogMapper[ctx.hashCode()] = dialog
         return dialog
     }
 
-    fun hideLoading(ctx: Context?) {
-        val hash = ctx!!.hashCode()
-        if (loadingDialogMapper[hash] != null) {
-            hideLoading(loadingDialogMapper[hash]!!)
+    fun hideLoading(ctx: Context) {
+        if (getDialogByContext(ctx) != null) {
+            hideLoading(getDialogByContext(ctx)!!)
         }
     }
 
@@ -109,23 +98,14 @@ class UISupport : OnHandlerMessage {
 
     fun bindLongClick(listener: View.OnLongClickListener, vararg views: View) = bindEvent(null, listener, *views)
 
-    fun getLayoutResId(clazz: Class<*>): Int {
-        val annotation = clazz.getAnnotation(LayoutResId::class.java)
-        if (annotation != null) {
-            return annotation.id
-        }
-        return 0x0
-    }
+    fun getLayoutResId(clazz: Class<*>): Int = clazz.getAnnotation(LayoutResId::class.java)?.id
+            ?: 0x0
 
     fun quickTo(c: Class<*>, a: Activity = AppManager.last()) = a.startActivity(normalIntent(c))
 
     fun quickTo(c: Class<*>, f: Fragment) = f.startActivity(normalIntent(c))
 
-    fun normalIntent(c: Class<*>): Intent {
-        val intent = Intent()
-        intent.setClass(UIHelper.getContext(), c)
-        return intent
-    }
+    fun normalIntent(c: Class<*>): Intent = Intent().setClass(UIHelper.getContext(), c)
 
     fun quickToForResult(c: Class<*>, requestCode: Int, a: Activity = AppManager.last()) = a.startActivityForResult(normalIntent(c), requestCode)
 

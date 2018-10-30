@@ -14,6 +14,7 @@ import io.reactivex.disposables.Disposable
 /**
  * 接口观察者
  * */
+@Suppress("UNCHECKED_CAST", "MemberVisibilityCanBePrivate", "unused")
 open class RxObserver<T> : Observer<T> {
     private var activity: Activity
     private var isShowLoading: Boolean
@@ -52,7 +53,7 @@ open class RxObserver<T> : Observer<T> {
      * 显示加载提示
      * */
     open fun showLoading() {
-        this.loadingDialog = UIHelper.showLoading(activity, null)
+        this.loadingDialog = UIHelper.showLoading(activity)
     }
 
     /**

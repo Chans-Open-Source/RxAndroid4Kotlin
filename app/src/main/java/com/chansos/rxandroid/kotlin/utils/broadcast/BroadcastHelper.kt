@@ -6,6 +6,7 @@ import android.support.v4.content.LocalBroadcastManager
 /**
  * 广播管理器
  * */
+@Suppress("UNCHECKED_CAST", "MemberVisibilityCanBePrivate", "unused")
 class BroadcastHelper {
     companion object {
         private val instance: BroadcastSupport by lazy {

@@ -9,8 +9,8 @@ import com.chansos.rxandroid.kotlin.anno.AutowirePresent
 import com.chansos.rxandroid.kotlin.anno.LayoutResId
 import com.chansos.rxandroid.kotlin.anno.PageDefaultOptions
 import com.chansos.rxandroid.kotlin.base.BaseActivity
-import com.chansos.rxandroid.kotlin.utils.support.LogUtils
 import com.chansos.rxandroid.kotlin.utils.permission.PermissionHelper
+import com.chansos.rxandroid.kotlin.utils.support.LogUtils
 import kotlinx.android.synthetic.main.activity_first.*
 import java.util.*
 
