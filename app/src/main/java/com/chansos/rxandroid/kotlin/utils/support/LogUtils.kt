@@ -2,7 +2,7 @@
  * Copyright (c) 2018. Create and edit by ChangedenChan.
  */
 
-package com.chansos.rxandroid.kotlin.utils
+package com.chansos.rxandroid.kotlin.utils.support
 
 import android.util.Log
 

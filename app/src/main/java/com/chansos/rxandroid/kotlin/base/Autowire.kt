@@ -9,7 +9,7 @@ import android.text.TextUtils
 import com.chansos.rxandroid.kotlin.anno.AutowirePresent
 import com.chansos.rxandroid.kotlin.anno.PageDefaultOptions
 import com.chansos.rxandroid.kotlin.utils.AppManager
-import com.chansos.rxandroid.kotlin.utils.ObjectUtils
+import com.chansos.rxandroid.kotlin.utils.support.ObjectUtils
 
 /**
  * 自动装配

@@ -108,5 +108,253 @@ class HandlerHelper {
          * @param obj 操作对象
          * */
         fun destory(obj: Any) = instance.destory(obj)
+
+        /**
+         * 从消息池中获取消息实例
+         *
+         * @param obj 操作对象
+         *
+         * @return 消息实例
+         * */
+        fun obtainMessage(obj: Any): Message = instance.obtainMessage(obj)
+
+        /**
+         * 从消息池中获取消息实例
+         *
+         * @param obj 操作对象
+         * @param what 赋值给消息实例的msg.what
+         *
+         * @return 消息实例
+         * */
+        fun obtainMessage(obj: Any, what: Int): Message = instance.obtainMessage(obj, what)
+
+        /**
+         * 从消息池中获取消息实例
+         *
+         * @param obj 操作对象
+         * @param what 赋值给消息实例的msg.what
+         * @param msgObj 赋值给消息实例的msg.obj
+         *
+         * @return 消息实例
+         * */
+        fun obtainMessage(obj: Any, what: Int, msgObj: Any): Message = instance.obtainMessage(obj, what, msgObj)
+
+        /**
+         * 从消息池中获取消息实例
+         *
+         * @param obj 操作对象
+         * @param what 赋值给消息实例的msg.what
+         * @param msgArg1 赋值给消息实例的msg.arg1
+         * @param msgArg2 赋值给消息实例的msg.arg2
+         *
+         * @return 消息实例
+         * */
+        fun obtainMessage(obj: Any, what: Int, msgArg1: Int, msgArg2: Int): Message = instance.obtainMessage(obj, what, msgArg1, msgArg2)
+
+        /**
+         * 从消息池中获取消息实例
+         *
+         * @param obj 操作对象
+         * @param what 赋值给消息实例的msg.what
+         * @param msgObj 赋值给消息实例的msg.obj
+         * @param msgArg1 赋值给消息实例的msg.arg1
+         * @param msgArg2 赋值给消息实例的msg.arg2
+         *
+         * @return 消息实例
+         * */
+        fun obtainMessage(obj: Any, what: Int, msgObj: Any, msgArg1: Int, msgArg2: Int): Message = instance.obtainMessage(obj, what, msgObj, msgArg1, msgArg2)
+
+        /**
+         * 从消息池中获取消息实例
+         *
+         * @param obj 操作对象
+         * @param what 赋值给消息实例的msg.what
+         *
+         * @return 发送结果
+         * */
+        fun sendMessage(obj: Any, what: Int): Boolean = send(obj, obtainMessage(obj, what))
+
+        /**
+         * 从消息池中获取消息实例
+         *
+         * @param obj 操作对象
+         * @param what 赋值给消息实例的msg.what
+         * @param msgObj 赋值给消息实例的msg.obj
+         *
+         * @return 发送结果
+         * */
+        fun sendMessage(obj: Any, what: Int, msgObj: Any): Boolean = send(obj, obtainMessage(obj, what, msgObj))
+
+        /**
+         * 从消息池中获取消息实例
+         *
+         * @param obj 操作对象
+         * @param what 赋值给消息实例的msg.what
+         * @param msgArg1 赋值给消息实例的msg.arg1
+         * @param msgArg2 赋值给消息实例的msg.arg2
+         *
+         * @return 发送结果
+         * */
+        fun sendMessage(obj: Any, what: Int, msgArg1: Int, msgArg2: Int): Boolean = send(obj, obtainMessage(obj, what, msgArg1, msgArg2))
+
+        /**
+         * 从消息池中获取消息实例
+         *
+         * @param obj 操作对象
+         * @param what 赋值给消息实例的msg.what
+         * @param msgObj 赋值给消息实例的msg.obj
+         * @param msgArg1 赋值给消息实例的msg.arg1
+         * @param msgArg2 赋值给消息实例的msg.arg2
+         *
+         * @return 发送结果
+         * */
+        fun sendMessage(obj: Any, what: Int, msgObj: Any, msgArg1: Int, msgArg2: Int): Boolean = send(obj, obtainMessage(obj, what, msgObj, msgArg1, msgArg2))
+
+        /**
+         * 从消息池中获取消息实例
+         *
+         * @param obj 操作对象
+         * @param what 赋值给消息实例的msg.what
+         * @param delay 延时（毫秒）
+         *
+         * @return 发送结果
+         * */
+        fun sendMessageDelayed(obj: Any, what: Int, delay: Long): Boolean = sendDelayed(obj, obtainMessage(obj, what), delay)
+
+        /**
+         * 从消息池中获取消息实例
+         *
+         * @param obj 操作对象
+         * @param what 赋值给消息实例的msg.what
+         * @param msgObj 赋值给消息实例的msg.obj
+         * @param delay 延时（毫秒）
+         *
+         * @return 发送结果
+         * */
+        fun sendMessageDelayed(obj: Any, what: Int, msgObj: Any, delay: Long): Boolean = sendDelayed(obj, obtainMessage(obj, what, msgObj), delay)
+
+        /**
+         * 从消息池中获取消息实例
+         *
+         * @param obj 操作对象
+         * @param what 赋值给消息实例的msg.what
+         * @param msgArg1 赋值给消息实例的msg.arg1
+         * @param msgArg2 赋值给消息实例的msg.arg2
+         * @param delay 延时（毫秒）
+         *
+         * @return 发送结果
+         * */
+        fun sendMessageDelayed(obj: Any, what: Int, msgArg1: Int, msgArg2: Int, delay: Long): Boolean = sendDelayed(obj, obtainMessage(obj, what, msgArg1, msgArg2), delay)
+
+        /**
+         * 从消息池中获取消息实例
+         *
+         * @param obj 操作对象
+         * @param what 赋值给消息实例的msg.what
+         * @param msgObj 赋值给消息实例的msg.obj
+         * @param msgArg1 赋值给消息实例的msg.arg1
+         * @param msgArg2 赋值给消息实例的msg.arg2
+         * @param delay 延时（毫秒）
+         *
+         * @return 发送结果
+         * */
+        fun sendMessageDelayed(obj: Any, what: Int, msgObj: Any, msgArg1: Int, msgArg2: Int, delay: Long): Boolean = sendDelayed(obj, obtainMessage(obj, what, msgObj, msgArg1, msgArg2), delay)
+
+        /**
+         * 从消息池中获取消息实例
+         *
+         * @param obj 操作对象
+         * @param what 赋值给消息实例的msg.what
+         * @param uptime （毫秒）
+         *
+         * @return 发送结果
+         * */
+        fun sendMessageAtTime(obj: Any, what: Int, uptime: Long): Boolean = sendAtTime(obj, obtainMessage(obj, what), uptime)
+
+        /**
+         * 从消息池中获取消息实例
+         *
+         * @param obj 操作对象
+         * @param what 赋值给消息实例的msg.what
+         * @param msgObj 赋值给消息实例的msg.obj
+         * @param uptime （毫秒）
+         *
+         * @return 发送结果
+         * */
+        fun sendMessageAtTime(obj: Any, what: Int, msgObj: Any, uptime: Long): Boolean = sendAtTime(obj, obtainMessage(obj, what, msgObj), uptime)
+
+        /**
+         * 从消息池中获取消息实例
+         *
+         * @param obj 操作对象
+         * @param what 赋值给消息实例的msg.what
+         * @param msgArg1 赋值给消息实例的msg.arg1
+         * @param msgArg2 赋值给消息实例的msg.arg2
+         * @param uptime （毫秒）
+         *
+         * @return 发送结果
+         * */
+        fun sendMessageAtTime(obj: Any, what: Int, msgArg1: Int, msgArg2: Int, uptime: Long): Boolean = sendAtTime(obj, obtainMessage(obj, what, msgArg1, msgArg2), uptime)
+
+        /**
+         * 从消息池中获取消息实例
+         *
+         * @param obj 操作对象
+         * @param what 赋值给消息实例的msg.what
+         * @param msgObj 赋值给消息实例的msg.obj
+         * @param msgArg1 赋值给消息实例的msg.arg1
+         * @param msgArg2 赋值给消息实例的msg.arg2
+         * @param uptime （毫秒）
+         *
+         * @return 发送结果
+         * */
+        fun sendMessageAtTime(obj: Any, what: Int, msgObj: Any, msgArg1: Int, msgArg2: Int, uptime: Long): Boolean = sendAtTime(obj, obtainMessage(obj, what, msgObj, msgArg1, msgArg2), uptime)
+
+        /**
+         * 从消息池中获取消息实例
+         *
+         * @param obj 操作对象
+         * @param what 赋值给消息实例的msg.what
+         *
+         * @return 发送结果
+         * */
+        fun sendMessageAtFirst(obj: Any, what: Int): Boolean = sendAtFirst(obj, obtainMessage(obj, what))
+
+        /**
+         * 从消息池中获取消息实例
+         *
+         * @param obj 操作对象
+         * @param what 赋值给消息实例的msg.what
+         * @param msgObj 赋值给消息实例的msg.obj
+         *
+         * @return 发送结果
+         * */
+        fun sendMessageAtFirst(obj: Any, what: Int, msgObj: Any): Boolean = sendAtFirst(obj, obtainMessage(obj, what, msgObj))
+
+        /**
+         * 从消息池中获取消息实例
+         *
+         * @param obj 操作对象
+         * @param what 赋值给消息实例的msg.what
+         * @param msgArg1 赋值给消息实例的msg.arg1
+         * @param msgArg2 赋值给消息实例的msg.arg2
+         *
+         * @return 发送结果
+         * */
+        fun sendMessageAtFirst(obj: Any, what: Int, msgArg1: Int, msgArg2: Int): Boolean = sendAtFirst(obj, obtainMessage(obj, what, msgArg1, msgArg2))
+
+        /**
+         * 从消息池中获取消息实例
+         *
+         * @param obj 操作对象
+         * @param what 赋值给消息实例的msg.what
+         * @param msgObj 赋值给消息实例的msg.obj
+         * @param msgArg1 赋值给消息实例的msg.arg1
+         * @param msgArg2 赋值给消息实例的msg.arg2
+         *
+         * @return 发送结果
+         * */
+        fun sendMessageAtFirst(obj: Any, what: Int, msgObj: Any, msgArg1: Int, msgArg2: Int): Boolean = sendAtFirst(obj, obtainMessage(obj, what, msgObj, msgArg1, msgArg2))
+
     }
 }

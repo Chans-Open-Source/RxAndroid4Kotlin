@@ -7,8 +7,8 @@ package com.chansos.rxandroid.kotlin.base
 import android.os.Bundle
 import android.view.Menu
 import com.chansos.rxandroid.kotlin.utils.AppManager
-import com.chansos.rxandroid.kotlin.utils.LogUtils
-import com.chansos.rxandroid.kotlin.utils.ObjectUtils
+import com.chansos.rxandroid.kotlin.utils.support.LogUtils
+import com.chansos.rxandroid.kotlin.utils.support.ObjectUtils
 import com.chansos.rxandroid.kotlin.utils.handler.HandlerHelper
 import com.chansos.rxandroid.kotlin.utils.ui.UIHelper
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity

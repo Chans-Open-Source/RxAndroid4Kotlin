@@ -3,7 +3,7 @@ package com.chansos.rxandroid.kotlin.base
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
-import com.chansos.rxandroid.kotlin.utils.ObjectUtils
+import com.chansos.rxandroid.kotlin.utils.support.ObjectUtils
 
 /**
  * 通用的RecyclerView适配器

@@ -95,7 +95,7 @@ class UIHelper {
          *
          * @param dialog 对话框实例
          * */
-        fun hideLoading(dialog: MaterialDialog?) = instance.hideLoading(dialog)
+        fun hideLoading(dialog: MaterialDialog) = instance.hideLoading(dialog)
 
         /**
          * 绑定点击事件

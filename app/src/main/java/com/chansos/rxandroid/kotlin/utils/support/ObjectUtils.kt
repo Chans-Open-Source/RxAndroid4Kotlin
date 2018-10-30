@@ -1,4 +1,4 @@
-package com.chansos.rxandroid.kotlin.utils
+package com.chansos.rxandroid.kotlin.utils.support
 
 import java.lang.reflect.Field
 import java.lang.reflect.Modifier

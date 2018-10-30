@@ -1,4 +1,6 @@
-package com.chansos.rxandroid.kotlin.utils
+package com.chansos.rxandroid.kotlin.utils.support
+
+import com.chansos.rxandroid.kotlin.utils.AppManager
 
 /**
  * 应用崩溃处理器

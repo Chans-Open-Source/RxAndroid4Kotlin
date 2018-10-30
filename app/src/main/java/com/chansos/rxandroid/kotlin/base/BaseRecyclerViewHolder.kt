@@ -9,7 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.chansos.rxandroid.kotlin.utils.ImageLoader
-import com.chansos.rxandroid.kotlin.utils.ObjectUtils
+import com.chansos.rxandroid.kotlin.utils.support.ObjectUtils
 import com.chansos.rxandroid.kotlin.utils.ui.UIHelper
 
 class BaseRecyclerViewHolder(itemView: View, private val context: Context) : RecyclerView.ViewHolder(itemView) {

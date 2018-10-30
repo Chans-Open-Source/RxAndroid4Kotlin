@@ -8,7 +8,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.chansos.rxandroid.kotlin.utils.ObjectUtils
+import com.chansos.rxandroid.kotlin.utils.support.ObjectUtils
 import com.chansos.rxandroid.kotlin.utils.handler.HandlerHelper
 import com.trello.rxlifecycle2.components.support.RxFragment
 

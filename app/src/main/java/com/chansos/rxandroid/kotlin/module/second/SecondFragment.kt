@@ -8,7 +8,7 @@ import com.chansos.rxandroid.kotlin.R
 import com.chansos.rxandroid.kotlin.anno.AutowirePresent
 import com.chansos.rxandroid.kotlin.anno.LayoutResId
 import com.chansos.rxandroid.kotlin.base.BaseViewPagerFragment
-import com.chansos.rxandroid.kotlin.utils.LogUtils
+import com.chansos.rxandroid.kotlin.utils.support.LogUtils
 
 @LayoutResId(R.layout.fragment_second)
 @AutowirePresent("com.chansos.rxandroid.kotlin.module.second.Presenter")

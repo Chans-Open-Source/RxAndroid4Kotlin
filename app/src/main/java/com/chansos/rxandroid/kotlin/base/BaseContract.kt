@@ -4,7 +4,7 @@
 
 package com.chansos.rxandroid.kotlin.base
 
-import com.chansos.rxandroid.kotlin.utils.ObjectUtils
+import com.chansos.rxandroid.kotlin.utils.support.ObjectUtils
 
 /**
  * MVP项目结构的合约接口

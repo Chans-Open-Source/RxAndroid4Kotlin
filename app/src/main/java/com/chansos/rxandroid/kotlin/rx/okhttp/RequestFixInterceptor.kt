@@ -4,7 +4,7 @@
 
 package com.chansos.rxandroid.kotlin.rx.okhttp
 
-import com.chansos.rxandroid.kotlin.utils.LogUtils
+import com.chansos.rxandroid.kotlin.utils.support.LogUtils
 import okhttp3.Interceptor
 import okhttp3.Request
 import okhttp3.Response

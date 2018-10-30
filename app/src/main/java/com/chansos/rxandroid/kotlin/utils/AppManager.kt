@@ -9,6 +9,8 @@ import android.app.Activity
 import android.content.Context
 import android.content.res.Resources
 import android.support.v7.app.AppCompatActivity
+import com.chansos.rxandroid.kotlin.utils.support.CrashHandler
+import com.chansos.rxandroid.kotlin.utils.support.LogUtils
 import java.util.*
 
 /**
@@ -35,6 +37,10 @@ class AppManager private constructor() : Stack<Activity>() {
          * @param context 应用根Context实例
          * */
         fun init(context: Context) {
+            /**
+             * 初始化应用崩溃事件处理工具
+             * */
+            CrashHandler.init()
             instance.context = context
         }
 
