@@ -33,8 +33,8 @@ class UISupport : OnHandlerMessage {
     private val toast: Toast by lazy {
         Toast.makeText(UIHelper.getContext(), R.string.app_name, Toast.LENGTH_SHORT)
     }
-    private val loadingDialogMapper: ConcurrentHashMap<Int, MaterialDialog> by lazy {
-        ConcurrentHashMap<Int, MaterialDialog>()
+    private val loadingDialogMapper: ConcurrentHashMap<Int, DialogConfig> by lazy {
+        ConcurrentHashMap<Int, DialogConfig>()
     }
 
     fun showToast(message: CharSequence): Toast? {
@@ -59,29 +59,19 @@ class UISupport : OnHandlerMessage {
 
     fun removeLoadingDialog(fragment: Fragment) = removeLoadingDialog(fragment.activity!!)
 
-    private fun getDialogByContext(ctx: Context): MaterialDialog? {
+    private fun getDialogByContext(ctx: Context): DialogConfig? {
         return loadingDialogMapper[ctx.hashCode()]
     }
 
     private fun showLoadingByContext(ctx: Context, message: String): MaterialDialog {
-        val dialog = getDialogByContext(ctx) ?: MaterialDialog
-                .Builder(ctx)
-                .cancelable(false)
-                .progress(true, 0)
-                .show()
-        dialog.setContent(message)
-        dialog.show()
-        loadingDialogMapper[ctx.hashCode()] = dialog
-        return dialog
+        val config = getDialogByContext(ctx) ?: DialogConfig(this, ctx)
+        loadingDialogMapper[ctx.hashCode()] = config.show(message)
+        return config.dialog
     }
 
-    fun hideLoading(ctx: Context) {
-        if (getDialogByContext(ctx) != null) {
-            hideLoading(getDialogByContext(ctx)!!)
-        }
-    }
+    fun hideLoading(ctx: Context) = getDialogByContext(ctx)?.dismiss()
 
-    fun hideLoading(dialog: MaterialDialog) = HandlerHelper.sendMessageDelayed(this, HIDE_LOADING, dialog, HIDE_LOADING_DELAY)
+    fun hideLoading(dialog: MaterialDialog) = HandlerHelper.sendMessage(this, HIDE_LOADING, dialog)
 
     private fun bindEvent(onClick: View.OnClickListener?, onLongClick: View.OnLongClickListener?, vararg views: View) {
         views.forEach { view ->
@@ -125,6 +115,35 @@ class UISupport : OnHandlerMessage {
             else -> {
                 false
             }
+        }
+    }
+
+    inner class DialogConfig(private val obj: Any, private val ctx: Context) {
+        internal val dialog: MaterialDialog by lazy {
+            MaterialDialog
+                    .Builder(ctx)
+                    .cancelable(false)
+                    .progress(true, 0)
+                    .show()
+        }
+        private var time: Long = now()
+
+        private fun now() = System.currentTimeMillis()
+
+        fun show(message: String): DialogConfig {
+            dialog.setContent(message)
+            dialog.show()
+            time = now()
+            return this
+        }
+
+        fun dismiss(): DialogConfig {
+            if ((now() - time) >= HIDE_LOADING_DELAY) {
+                HandlerHelper.sendMessage(obj, HIDE_LOADING, dialog)
+            } else {
+                HandlerHelper.sendMessageDelayed(obj, HIDE_LOADING, dialog, HIDE_LOADING_DELAY)
+            }
+            return this
         }
     }
 }
