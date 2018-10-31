@@ -4,13 +4,13 @@ import android.Manifest
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import com.chansos.libs.rxkotlin.anno.AutowirePresent
+import com.chansos.libs.rxkotlin.anno.LayoutResId
+import com.chansos.libs.rxkotlin.anno.PageDefaultOptions
+import com.chansos.libs.rxkotlin.base.BaseActivity
+import com.chansos.libs.rxkotlin.permission.PermissionHelper
+import com.chansos.libs.rxkotlin.support.LogUtils
 import com.chansos.rxandroid.kotlin.R
-import com.chansos.rxandroid.kotlin.anno.AutowirePresent
-import com.chansos.rxandroid.kotlin.anno.LayoutResId
-import com.chansos.rxandroid.kotlin.anno.PageDefaultOptions
-import com.chansos.rxandroid.kotlin.base.BaseActivity
-import com.chansos.rxandroid.kotlin.utils.permission.PermissionHelper
-import com.chansos.rxandroid.kotlin.utils.support.LogUtils
 import kotlinx.android.synthetic.main.activity_first.*
 import java.util.*
 

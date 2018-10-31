@@ -5,7 +5,7 @@
 package com.chansos.rxandroid.kotlin
 
 import android.support.multidex.MultiDexApplication
-import com.chansos.rxandroid.kotlin.utils.AppManager
+import com.chansos.libs.rxkotlin.AppManager
 
 /**
  * 安卓应用根实例
@@ -18,5 +18,6 @@ class AppApplication : MultiDexApplication() {
          * 初始化应用管理工具
          * */
         AppManager.init(this.applicationContext)
+
     }
 }

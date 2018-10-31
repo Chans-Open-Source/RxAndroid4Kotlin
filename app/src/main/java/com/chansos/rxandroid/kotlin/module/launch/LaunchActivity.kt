@@ -5,12 +5,12 @@
 package com.chansos.rxandroid.kotlin.module.launch
 
 import android.view.View
+import com.chansos.libs.rxkotlin.ImageLoader
+import com.chansos.libs.rxkotlin.anno.AutowirePresent
+import com.chansos.libs.rxkotlin.anno.LayoutResId
+import com.chansos.libs.rxkotlin.anno.PageDefaultOptions
+import com.chansos.libs.rxkotlin.base.BaseActivity
 import com.chansos.rxandroid.kotlin.R
-import com.chansos.rxandroid.kotlin.anno.AutowirePresent
-import com.chansos.rxandroid.kotlin.anno.LayoutResId
-import com.chansos.rxandroid.kotlin.anno.PageDefaultOptions
-import com.chansos.rxandroid.kotlin.base.BaseActivity
-import com.chansos.rxandroid.kotlin.utils.ImageLoader
 import kotlinx.android.synthetic.main.activity_launch.*
 
 @LayoutResId(R.layout.activity_launch)

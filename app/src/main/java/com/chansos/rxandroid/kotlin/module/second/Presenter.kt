@@ -5,11 +5,11 @@
 package com.chansos.rxandroid.kotlin.module.second
 
 import com.alibaba.fastjson.JSON
+import com.chansos.libs.rxkotlin.base.BaseFragment
+import com.chansos.libs.rxkotlin.rx.RxKotlin
+import com.chansos.libs.rxkotlin.support.LogUtils
 import com.chansos.rxandroid.kotlin.api.test.Test
-import com.chansos.rxandroid.kotlin.base.BaseFragment
 import com.chansos.rxandroid.kotlin.model.ProjectModel
-import com.chansos.rxandroid.kotlin.rx.RxKotlin
-import com.chansos.rxandroid.kotlin.utils.support.LogUtils
 
 class Presenter : Contract.Presenter {
   private lateinit var view: Contract.View

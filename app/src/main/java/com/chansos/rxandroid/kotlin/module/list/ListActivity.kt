@@ -2,12 +2,12 @@ package com.chansos.rxandroid.kotlin.module.list
 
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
+import com.chansos.libs.rxkotlin.anno.AutowirePresent
+import com.chansos.libs.rxkotlin.anno.LayoutResId
+import com.chansos.libs.rxkotlin.base.BaseActivity
+import com.chansos.libs.rxkotlin.base.BaseRecyclerViewAdapter
+import com.chansos.libs.rxkotlin.ui.UIHelper
 import com.chansos.rxandroid.kotlin.R
-import com.chansos.rxandroid.kotlin.anno.AutowirePresent
-import com.chansos.rxandroid.kotlin.anno.LayoutResId
-import com.chansos.rxandroid.kotlin.base.BaseActivity
-import com.chansos.rxandroid.kotlin.base.BaseRecyclerViewAdapter
-import com.chansos.rxandroid.kotlin.utils.ui.UIHelper
 import kotlinx.android.synthetic.main.activity_list.*
 
 @LayoutResId(R.layout.activity_list)

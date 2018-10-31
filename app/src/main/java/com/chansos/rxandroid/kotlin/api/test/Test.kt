@@ -4,12 +4,15 @@
 
 package com.chansos.rxandroid.kotlin.api.test
 
+import com.chansos.libs.rxkotlin.rx.support.BaseUrl
+import com.chansos.libs.rxkotlin.rx.support.Domain
 import com.chansos.rxandroid.kotlin.model.ProjectModel
-import com.chansos.rxandroid.kotlin.rx.support.BaseUrl
 import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Query
 
+
+@Domain(com.chansos.rxandroid.kotlin.api.Config.DOMAIN)
 @BaseUrl("article/")
 interface Test {
     @GET("project")

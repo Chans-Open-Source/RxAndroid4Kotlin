@@ -1,15 +1,15 @@
 package com.chansos.rxandroid.kotlin.module.first
 
 import com.alibaba.fastjson.JSON
+import com.chansos.libs.rxkotlin.AppManager
+import com.chansos.libs.rxkotlin.base.BaseActivity
+import com.chansos.libs.rxkotlin.rx.RxKotlin
+import com.chansos.libs.rxkotlin.sp.SharedPreferencesHelper
+import com.chansos.libs.rxkotlin.support.LogUtils
+import com.chansos.libs.rxkotlin.ui.UIHelper
 import com.chansos.rxandroid.kotlin.api.test.Test
-import com.chansos.rxandroid.kotlin.base.BaseActivity
 import com.chansos.rxandroid.kotlin.model.ProjectModel
 import com.chansos.rxandroid.kotlin.module.second.SecondActivity
-import com.chansos.rxandroid.kotlin.rx.RxKotlin
-import com.chansos.rxandroid.kotlin.utils.AppManager
-import com.chansos.rxandroid.kotlin.utils.sp.SharedPreferencesHelper
-import com.chansos.rxandroid.kotlin.utils.support.LogUtils
-import com.chansos.rxandroid.kotlin.utils.ui.UIHelper
 
 class Presenter : Contract.Presenter {
   private lateinit var view: Contract.View

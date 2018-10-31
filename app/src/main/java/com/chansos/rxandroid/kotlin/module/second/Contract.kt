@@ -4,7 +4,7 @@
 
 package com.chansos.rxandroid.kotlin.module.second
 
-import com.chansos.rxandroid.kotlin.base.BaseContract
+import com.chansos.libs.rxkotlin.base.BaseContract
 
 interface Contract : BaseContract {
   interface View : BaseContract.BaseView

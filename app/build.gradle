@@ -57,4 +57,5 @@ dependencies {
     implementation "com.android.support:appcompat-v7:$sdk_version"
     implementation "com.android.support:recyclerview-v7:$sdk_version"
     implementation "com.android.support:design:$sdk_version"
+    implementation 'com.chansos.libs:rxkotlin:0.0.7'
 }

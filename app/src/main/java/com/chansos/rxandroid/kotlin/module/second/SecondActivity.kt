@@ -11,11 +11,11 @@ import android.support.v4.app.FragmentPagerAdapter
 import android.support.v4.view.ViewPager
 import android.view.Menu
 import android.view.MenuItem
+import com.chansos.libs.rxkotlin.anno.LayoutResId
+import com.chansos.libs.rxkotlin.anno.PageDefaultOptions
+import com.chansos.libs.rxkotlin.base.BaseActivity
+import com.chansos.libs.rxkotlin.ui.UIHelper
 import com.chansos.rxandroid.kotlin.R
-import com.chansos.rxandroid.kotlin.anno.LayoutResId
-import com.chansos.rxandroid.kotlin.anno.PageDefaultOptions
-import com.chansos.rxandroid.kotlin.base.BaseActivity
-import com.chansos.rxandroid.kotlin.utils.ui.UIHelper
 import kotlinx.android.synthetic.main.activity_second.*
 
 @LayoutResId(R.layout.activity_second)

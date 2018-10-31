@@ -2,10 +2,10 @@ package com.chansos.rxandroid.kotlin.module.launch
 
 import android.app.Activity
 import android.os.Message
+import com.chansos.libs.rxkotlin.handler.HandlerHelper
+import com.chansos.libs.rxkotlin.handler.OnHandlerMessage
+import com.chansos.libs.rxkotlin.ui.UIHelper
 import com.chansos.rxandroid.kotlin.module.first.FirstActivity
-import com.chansos.rxandroid.kotlin.utils.handler.HandlerHelper
-import com.chansos.rxandroid.kotlin.utils.handler.OnHandlerMessage
-import com.chansos.rxandroid.kotlin.utils.ui.UIHelper
 
 class Presenter : Contract.Presenter, OnHandlerMessage {
   private lateinit var view: Contract.View

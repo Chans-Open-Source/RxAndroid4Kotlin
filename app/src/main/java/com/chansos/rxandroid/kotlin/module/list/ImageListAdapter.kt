@@ -2,9 +2,9 @@ package com.chansos.rxandroid.kotlin.module.list
 
 import android.support.v7.widget.RecyclerView
 import android.view.View
+import com.chansos.libs.rxkotlin.base.BaseRecyclerViewAdapter
+import com.chansos.libs.rxkotlin.base.BaseRecyclerViewHolder
 import com.chansos.rxandroid.kotlin.R
-import com.chansos.rxandroid.kotlin.base.BaseRecyclerViewAdapter
-import com.chansos.rxandroid.kotlin.base.BaseRecyclerViewHolder
 
 class ImageListAdapter : BaseRecyclerViewAdapter<String>() {
   override fun getRootLayoutResId(): Int {
