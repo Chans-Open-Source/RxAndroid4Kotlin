@@ -37,25 +37,10 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     /* 支持大型应用 */
     implementation 'com.android.support:multidex:1.0.3'
-    /* Alibaba FastJson */
-    implementation 'com.alibaba:fastjson:1.1.70.android'
-    /* RxJava 框架支持 */
-    implementation 'io.reactivex.rxjava2:rxandroid:2.1.0'
-    implementation 'io.reactivex.rxjava2:rxjava:2.2.2'
-    implementation 'com.trello.rxlifecycle2:rxlifecycle-android:2.2.2'
-    implementation 'com.trello.rxlifecycle2:rxlifecycle-components:2.2.2'
-    /* Retrofit 网络框架 */
-    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
-    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
-    implementation 'org.ligboy.retrofit2:converter-fastjson-android:2.2.0'
-    /* Material Dialog */
-    implementation 'com.afollestad.material-dialogs:core:0.9.6.0'
-    /* Glide */
-    implementation 'com.github.bumptech.glide:glide:4.8.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
+    /* Libs */
+    implementation 'com.chansos.libs:rxkotlin:0.0.7'
     /* Support */
     implementation "com.android.support:appcompat-v7:$sdk_version"
     implementation "com.android.support:recyclerview-v7:$sdk_version"
     implementation "com.android.support:design:$sdk_version"
-    implementation 'com.chansos.libs:rxkotlin:0.0.7'
 }
