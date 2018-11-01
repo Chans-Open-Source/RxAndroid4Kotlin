@@ -12,28 +12,28 @@ import com.chansos.rxandroid.kotlin.api.test.Test
 import com.chansos.rxandroid.kotlin.model.ProjectModel
 
 class Presenter : Contract.Presenter {
-  private lateinit var view: Contract.View
+    private lateinit var view: Contract.View
 
-  override fun fetch() {
-    try {
-      RxRequest
-        .create<ProjectModel>(view as BaseFragment)
-        .api(RxRequest.api(Test::class.java).projectList(1, 2))
-        .obs(Obs(view as BaseFragment))
-    } catch (e: Exception) {
-      e.printStackTrace()
-    }
-  }
-
-  class Obs(fragment: BaseFragment) : RxRequest.RxObserver<ProjectModel>(fragment) {
-    override fun onNext(t: ProjectModel) {
-      super.onNext(t)
-      LogUtils.d(JSON.toJSONString(t))
+    override fun fetch() {
+        try {
+            RxRequest
+                    .create<ProjectModel>(view as BaseFragment)
+                    .api(RxRequest.api(Test::class.java).projectList(1, 2))
+                    .obs(Obs(view as BaseFragment))
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 
-    override fun onError(e: Throwable) {
-      super.onError(e)
-      LogUtils.e(e)
+    class Obs(fragment: BaseFragment) : RxRequest.RxObserver<ProjectModel>(fragment) {
+        override fun onNext(t: ProjectModel) {
+            super.onNext(t)
+            LogUtils.d(JSON.toJSONString(t))
+        }
+
+        override fun onError(e: Throwable) {
+            super.onError(e)
+            LogUtils.e(e)
+        }
     }
-  }
 }

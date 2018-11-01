@@ -3,15 +3,15 @@ package com.chansos.rxandroid.kotlin.module.launch
 import com.chansos.libs.rxkotlin.base.BaseContract
 
 interface Contract : BaseContract {
-  interface View : BaseContract.BaseView {
-    fun showCount(count: String)
-  }
+    interface View : BaseContract.BaseView {
+        fun showCount(count: String)
+    }
 
-  interface Presenter : BaseContract.BasePresenter {
-    fun startTimer()
+    interface Presenter : BaseContract.BasePresenter {
+        fun startTimer()
 
-    fun countDown()
+        fun countDown()
 
-    fun nextStep()
-  }
+        fun nextStep()
+    }
 }

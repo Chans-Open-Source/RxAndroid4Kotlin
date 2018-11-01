@@ -7,9 +7,9 @@ package com.chansos.rxandroid.kotlin.module.second
 import com.chansos.libs.rxkotlin.base.BaseContract
 
 interface Contract : BaseContract {
-  interface View : BaseContract.BaseView
+    interface View : BaseContract.BaseView
 
-  interface Presenter : BaseContract.BasePresenter {
-    fun fetch()
-  }
+    interface Presenter : BaseContract.BasePresenter {
+        fun fetch()
+    }
 }

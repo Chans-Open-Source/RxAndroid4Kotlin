@@ -13,18 +13,18 @@ import com.chansos.rxandroid.kotlin.R
 @LayoutResId(R.layout.fragment_second)
 @AutowirePresent("com.chansos.rxandroid.kotlin.module.second.Presenter")
 class SecondFragment : BaseViewPagerFragment(), Contract.View {
-  private lateinit var presenter: Presenter
+    private lateinit var presenter: Presenter
 
-  override fun onInitialize() {
-    LogUtils.d("fragment_second onInitialize")
-  }
+    override fun onInitialize() {
+        LogUtils.d("fragment_second onInitialize")
+    }
 
-  override fun onFirstTime() {
-    LogUtils.d("fragment_second onFirstTime")
-    this.presenter.fetch()
-  }
+    override fun onFirstTime() {
+        LogUtils.d("fragment_second onFirstTime")
+        this.presenter.fetch()
+    }
 
-  override fun onSecondTime() {
-    LogUtils.d("fragment_second onSecondTime")
-  }
+    override fun onSecondTime() {
+        LogUtils.d("fragment_second onSecondTime")
+    }
 }

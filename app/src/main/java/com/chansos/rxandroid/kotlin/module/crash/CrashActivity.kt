@@ -8,7 +8,7 @@ import com.chansos.rxandroid.kotlin.R
 @LayoutResId(R.layout.activity_crash)
 @PageDefaultOptions(titleResId = R.string.to_crash_page)
 class CrashActivity : BaseActivity() {
-  override fun initialize() {
-    throw NullPointerException()
-  }
+    override fun initialize() {
+        throw NullPointerException()
+    }
 }

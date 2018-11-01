@@ -4,21 +4,21 @@ import com.chansos.libs.rxkotlin.base.BaseContract
 
 
 interface Contract : BaseContract {
-  interface View : BaseContract.BaseView
+    interface View : BaseContract.BaseView
 
-  interface Presenter : BaseContract.BasePresenter {
-    fun fetch()
+    interface Presenter : BaseContract.BasePresenter {
+        fun fetch()
 
-    fun toSecondPage()
+        fun toSecondPage()
 
-    fun exitApp()
+        fun exitApp()
 
-    fun toListPage()
+        fun toListPage()
 
-    fun toCrashPage()
+        fun toCrashPage()
 
-    fun setRandomInfo()
+        fun setRandomInfo()
 
-    fun getRandomInfo()
-  }
+        fun getRandomInfo()
+    }
 }
