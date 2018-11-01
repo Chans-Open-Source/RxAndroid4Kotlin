@@ -2,11 +2,11 @@ package com.chansos.rxandroid.kotlin.module.list
 
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
+import com.chansos.libs.rxkotlin.AppHelper
 import com.chansos.libs.rxkotlin.anno.AutowirePresent
 import com.chansos.libs.rxkotlin.anno.LayoutResId
 import com.chansos.libs.rxkotlin.base.BaseActivity
 import com.chansos.libs.rxkotlin.base.BaseRecyclerViewAdapter
-import com.chansos.libs.rxkotlin.ui.UIHelper
 import com.chansos.rxandroid.kotlin.R
 import kotlinx.android.synthetic.main.activity_list.*
 
@@ -26,7 +26,7 @@ class ListActivity : BaseActivity(), BaseRecyclerViewAdapter.OnItemClickListener
   }
 
   override fun onItemClick(view: View, position: Int) {
-    UIHelper.showToast("Clicked $position.")
+    AppHelper.UI.showToast("Clicked $position.")
   }
 
   override fun onDestroy() {

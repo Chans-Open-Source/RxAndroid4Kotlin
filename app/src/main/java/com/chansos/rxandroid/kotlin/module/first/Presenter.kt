@@ -1,12 +1,11 @@
 package com.chansos.rxandroid.kotlin.module.first
 
 import com.alibaba.fastjson.JSON
+import com.chansos.libs.rxkotlin.AppHelper
 import com.chansos.libs.rxkotlin.AppManager
+import com.chansos.libs.rxkotlin.RxRequest
 import com.chansos.libs.rxkotlin.base.BaseActivity
-import com.chansos.libs.rxkotlin.rx.RxKotlin
-import com.chansos.libs.rxkotlin.sp.SharedPreferencesHelper
-import com.chansos.libs.rxkotlin.support.LogUtils
-import com.chansos.libs.rxkotlin.ui.UIHelper
+import com.chansos.libs.rxkotlin.log.LogUtils
 import com.chansos.rxandroid.kotlin.api.test.Test
 import com.chansos.rxandroid.kotlin.model.ProjectModel
 import com.chansos.rxandroid.kotlin.module.second.SecondActivity
@@ -15,7 +14,7 @@ class Presenter : Contract.Presenter {
   private lateinit var view: Contract.View
 
   override fun toSecondPage() {
-    UIHelper.quickTo(SecondActivity::class.java, view as BaseActivity)
+    AppHelper.UI.quickTo(SecondActivity::class.java, view as BaseActivity)
   }
 
   override fun exitApp() {
@@ -23,13 +22,13 @@ class Presenter : Contract.Presenter {
   }
 
   override fun fetch() {
-    RxKotlin
+    RxRequest
       .create<ProjectModel>(view as BaseActivity)
-      .api(RxKotlin.api(Test::class.java).projectList(1, 2))
+      .api(RxRequest.api(Test::class.java).projectList(1, 2))
       .obs(Obs(view as BaseActivity))
   }
 
-  class Obs(activity: BaseActivity) : RxKotlin.RxObserver<ProjectModel>(activity) {
+  class Obs(activity: BaseActivity) : RxRequest.RxObserver<ProjectModel>(activity) {
     override fun onNext(t: ProjectModel) {
       LogUtils.d(JSON.toJSONString(t))
     }
@@ -41,22 +40,22 @@ class Presenter : Contract.Presenter {
   }
 
   override fun toListPage() {
-    UIHelper.quickTo(com.chansos.rxandroid.kotlin.module.list.ListActivity::class.java, view as BaseActivity)
+    AppHelper.UI.quickTo(com.chansos.rxandroid.kotlin.module.list.ListActivity::class.java, view as BaseActivity)
   }
 
   override fun toCrashPage() {
-    UIHelper.quickTo(com.chansos.rxandroid.kotlin.module.crash.CrashActivity::class.java, view as BaseActivity)
+    AppHelper.UI.quickTo(com.chansos.rxandroid.kotlin.module.crash.CrashActivity::class.java, view as BaseActivity)
   }
 
   override fun setRandomInfo() {
-    SharedPreferencesHelper.set(javaClass.simpleName, System.currentTimeMillis())
+    AppHelper.SharedPreferences.set(javaClass.simpleName, System.currentTimeMillis())
     val a = HashSet<String>()
     a.add("1")
-    SharedPreferencesHelper.set(javaClass.simpleName + "1", a)
+    AppHelper.SharedPreferences.set(javaClass.simpleName + "1", a)
   }
 
   override fun getRandomInfo() {
-    LogUtils.i("xxx ${javaClass.simpleName}: ${SharedPreferencesHelper.get(javaClass.simpleName, Long::class.java, 0L)}")
-    LogUtils.i("xxx ${javaClass.simpleName + "1"}: ${SharedPreferencesHelper.get(javaClass.simpleName + "1", Set::class.java, null)}")
+    LogUtils.i("xxx ${javaClass.simpleName}: ${AppHelper.SharedPreferences.get(javaClass.simpleName, Long::class.java, 0L)}")
+    LogUtils.i("xxx ${javaClass.simpleName + "1"}: ${AppHelper.SharedPreferences.get(javaClass.simpleName + "1", Set::class.java, null)}")
   }
 }

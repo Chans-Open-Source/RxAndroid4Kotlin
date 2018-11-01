@@ -11,10 +11,10 @@ import android.support.v4.app.FragmentPagerAdapter
 import android.support.v4.view.ViewPager
 import android.view.Menu
 import android.view.MenuItem
+import com.chansos.libs.rxkotlin.AppHelper
 import com.chansos.libs.rxkotlin.anno.LayoutResId
 import com.chansos.libs.rxkotlin.anno.PageDefaultOptions
 import com.chansos.libs.rxkotlin.base.BaseActivity
-import com.chansos.libs.rxkotlin.ui.UIHelper
 import com.chansos.rxandroid.kotlin.R
 import kotlinx.android.synthetic.main.activity_second.*
 
@@ -88,10 +88,10 @@ class SecondActivity : BaseActivity(), ViewPager.OnPageChangeListener, TabLayout
   override fun onOptionsItemSelected(item: MenuItem?): Boolean {
     when (item!!.itemId) {
       R.id.page_one -> {
-        UIHelper.showToast(fragmentList[0].javaClass.simpleName)
+        AppHelper.UI.showToast(fragmentList[0].javaClass.simpleName)
       }
       R.id.page_two -> {
-        UIHelper.showToast(fragmentList[1].javaClass.simpleName)
+        AppHelper.UI.showToast(fragmentList[1].javaClass.simpleName)
       }
       else -> {
         return false

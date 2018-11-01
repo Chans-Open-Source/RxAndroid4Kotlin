@@ -7,7 +7,7 @@ package com.chansos.rxandroid.kotlin.module.second
 import com.chansos.libs.rxkotlin.anno.AutowirePresent
 import com.chansos.libs.rxkotlin.anno.LayoutResId
 import com.chansos.libs.rxkotlin.base.BaseViewPagerFragment
-import com.chansos.libs.rxkotlin.support.LogUtils
+import com.chansos.libs.rxkotlin.log.LogUtils
 import com.chansos.rxandroid.kotlin.R
 
 @LayoutResId(R.layout.fragment_first)
