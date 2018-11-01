@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.activity_first.*
 import java.util.*
 
 @LayoutResId(R.layout.activity_first)
-@AutowirePresent("com.chansos.rxandroid.kotlin.module.first.Presenter")
+@AutowirePresent(clazz = com.chansos.rxandroid.kotlin.module.first.Presenter::class)
 @PageDefaultOptions(title = "FirstActivity")
 class FirstActivity : BaseActivity(), Contract.View {
     private lateinit var presenter: Presenter
