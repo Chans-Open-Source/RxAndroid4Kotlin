@@ -4,14 +4,14 @@
 
 package com.chansos.rxandroid.kotlin.module.second
 
-import com.chansos.libs.rxkotlin.anno.AutowirePresent
-import com.chansos.libs.rxkotlin.anno.LayoutResId
+import com.chansos.libs.rxkotlin.anno.ModulePresenter
+import com.chansos.libs.rxkotlin.anno.PageLayoutId
 import com.chansos.libs.rxkotlin.base.BaseViewPagerFragment
 import com.chansos.libs.rxkotlin.log.LogUtils
 import com.chansos.rxandroid.kotlin.R
 
-@LayoutResId(R.layout.fragment_second)
-@AutowirePresent("com.chansos.rxandroid.kotlin.module.second.Presenter")
+@PageLayoutId(R.layout.fragment_second)
+@ModulePresenter("com.chansos.rxandroid.kotlin.module.second.Presenter")
 class SecondFragment : BaseViewPagerFragment(), Contract.View {
     private lateinit var presenter: Presenter
 

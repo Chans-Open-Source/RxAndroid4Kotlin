@@ -5,18 +5,18 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import com.chansos.libs.rxkotlin.AppHelper
-import com.chansos.libs.rxkotlin.anno.AutowirePresent
-import com.chansos.libs.rxkotlin.anno.LayoutResId
-import com.chansos.libs.rxkotlin.anno.PageDefaultOptions
+import com.chansos.libs.rxkotlin.anno.ModulePresenter
+import com.chansos.libs.rxkotlin.anno.PageLayoutId
+import com.chansos.libs.rxkotlin.anno.PageOptions
 import com.chansos.libs.rxkotlin.base.BaseActivity
 import com.chansos.libs.rxkotlin.log.LogUtils
 import com.chansos.rxandroid.kotlin.R
 import kotlinx.android.synthetic.main.activity_first.*
 import java.util.*
 
-@LayoutResId(R.layout.activity_first)
-@AutowirePresent(clazz = com.chansos.rxandroid.kotlin.module.first.Presenter::class)
-@PageDefaultOptions(title = "FirstActivity")
+@PageLayoutId(R.layout.activity_first)
+@ModulePresenter(clazz = com.chansos.rxandroid.kotlin.module.first.Presenter::class)
+@PageOptions(title = "FirstActivity")
 class FirstActivity : BaseActivity(), Contract.View {
     private lateinit var presenter: Presenter
     override fun initialize() {

@@ -12,14 +12,14 @@ import android.support.v4.view.ViewPager
 import android.view.Menu
 import android.view.MenuItem
 import com.chansos.libs.rxkotlin.AppHelper
-import com.chansos.libs.rxkotlin.anno.LayoutResId
-import com.chansos.libs.rxkotlin.anno.PageDefaultOptions
+import com.chansos.libs.rxkotlin.anno.PageLayoutId
+import com.chansos.libs.rxkotlin.anno.PageOptions
 import com.chansos.libs.rxkotlin.base.BaseActivity
 import com.chansos.rxandroid.kotlin.R
 import kotlinx.android.synthetic.main.activity_second.*
 
-@LayoutResId(R.layout.activity_second)
-@PageDefaultOptions(titleResId = R.string.to_second_page)
+@PageLayoutId(R.layout.activity_second)
+@PageOptions(titleResId = R.string.to_second_page)
 class SecondActivity : BaseActivity(), ViewPager.OnPageChangeListener, TabLayout.OnTabSelectedListener {
     val fragmentList = ArrayList<Fragment>()
     override fun initialize() {
