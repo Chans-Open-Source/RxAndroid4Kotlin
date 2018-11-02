@@ -2,8 +2,8 @@ package com.chansos.rxandroid.kotlin.module.launch
 
 import android.app.Activity
 import android.os.Message
-import com.chansos.libs.rxkotlin.AppHelper
-import com.chansos.libs.rxkotlin.handler.OnHandlerMessage
+import com.chansos.libs.rxkotlin.Kt
+import com.chansos.libs.rxkotlin.interfaces.OnHandlerMessage
 import com.chansos.rxandroid.kotlin.module.first.FirstActivity
 
 class Presenter : Contract.Presenter, OnHandlerMessage {
@@ -32,19 +32,19 @@ class Presenter : Contract.Presenter, OnHandlerMessage {
 
     override fun startTimer() {
         count = MAX_COUNT
-        AppHelper.Handler.create(this, this)
+        Kt.Handler.create(this, this)
         countDown()
     }
 
     override fun countDown() {
         view.showCount("${count}秒后跳过")
-        AppHelper.Handler.whatDelayed(this, COUNT_DOWN, 1000)
+        Kt.Handler.whatDelayed(this, COUNT_DOWN, 1000)
     }
 
     override fun nextStep() {
-        AppHelper.Handler.remove(this, COUNT_DOWN)
-        AppHelper.Handler.destory(this)
-        AppHelper.UI.quickTo(FirstActivity::class.java)
+        Kt.Handler.remove(this, COUNT_DOWN)
+        Kt.Handler.destory(this)
+        Kt.UI.quickTo(FirstActivity::class.java)
         (view as Activity).finish()
     }
 }

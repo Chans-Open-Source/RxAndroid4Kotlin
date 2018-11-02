@@ -4,8 +4,8 @@
 
 package com.chansos.rxandroid.kotlin.api.test
 
-import com.chansos.libs.rxkotlin.rx.support.BaseUrl
-import com.chansos.libs.rxkotlin.rx.support.Domain
+import com.chansos.libs.rxkotlin.annotations.BaseUrl
+import com.chansos.libs.rxkotlin.annotations.Domain
 import com.chansos.rxandroid.kotlin.model.ProjectModel
 import io.reactivex.Observable
 import retrofit2.http.GET

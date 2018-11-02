@@ -1,6 +1,6 @@
 package com.chansos.rxandroid.kotlin.module.first
 
-import com.chansos.libs.rxkotlin.base.BaseContract
+import com.chansos.libs.rxkotlin.classes.BaseContract
 
 
 interface Contract : BaseContract {

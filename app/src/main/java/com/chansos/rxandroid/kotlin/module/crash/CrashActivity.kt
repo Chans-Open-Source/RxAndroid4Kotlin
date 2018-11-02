@@ -1,8 +1,8 @@
 package com.chansos.rxandroid.kotlin.module.crash
 
-import com.chansos.libs.rxkotlin.anno.PageLayoutId
-import com.chansos.libs.rxkotlin.anno.PageOptions
-import com.chansos.libs.rxkotlin.base.BaseActivity
+import com.chansos.libs.rxkotlin.annotations.PageLayoutId
+import com.chansos.libs.rxkotlin.annotations.PageOptions
+import com.chansos.libs.rxkotlin.classes.BaseActivity
 import com.chansos.rxandroid.kotlin.R
 
 @PageLayoutId(R.layout.activity_crash)

@@ -5,9 +5,9 @@
 package com.chansos.rxandroid.kotlin.module.second
 
 import com.alibaba.fastjson.JSON
-import com.chansos.libs.rxkotlin.RxRequest
-import com.chansos.libs.rxkotlin.base.BaseFragment
-import com.chansos.libs.rxkotlin.log.LogUtils
+import com.chansos.libs.rxkotlin.Kt
+import com.chansos.libs.rxkotlin.classes.BaseFragment
+import com.chansos.libs.rxkotlin.utils.LogUtils
 import com.chansos.rxandroid.kotlin.api.test.Test
 import com.chansos.rxandroid.kotlin.model.ProjectModel
 
@@ -16,16 +16,16 @@ class Presenter : Contract.Presenter {
 
     override fun fetch() {
         try {
-            RxRequest
+            Kt.Request
                     .create<ProjectModel>(view as BaseFragment)
-                    .api(RxRequest.api(Test::class.java).projectList(1, 2))
+                    .api(Kt.Request.api(Test::class.java).projectList(1, 2))
                     .obs(Obs(view as BaseFragment))
         } catch (e: Exception) {
             e.printStackTrace()
         }
     }
 
-    class Obs(fragment: BaseFragment) : RxRequest.RxObserver<ProjectModel>(fragment) {
+    class Obs(fragment: BaseFragment) : Kt.Observer<ProjectModel>(fragment) {
         override fun onNext(t: ProjectModel) {
             super.onNext(t)
             LogUtils.d(JSON.toJSONString(t))

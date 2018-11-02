@@ -2,8 +2,8 @@ package com.chansos.rxandroid.kotlin.module.list
 
 import android.support.v7.widget.RecyclerView
 import android.view.View
-import com.chansos.libs.rxkotlin.base.BaseRecyclerViewAdapter
-import com.chansos.libs.rxkotlin.base.BaseRecyclerViewHolder
+import com.chansos.libs.rxkotlin.classes.BaseRecyclerViewAdapter
+import com.chansos.libs.rxkotlin.classes.BaseRecyclerViewHolder
 import com.chansos.rxandroid.kotlin.R
 
 class ImageListAdapter : BaseRecyclerViewAdapter<String>() {

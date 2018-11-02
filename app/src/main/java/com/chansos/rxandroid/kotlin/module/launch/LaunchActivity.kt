@@ -5,11 +5,11 @@
 package com.chansos.rxandroid.kotlin.module.launch
 
 import android.view.View
-import com.chansos.libs.rxkotlin.AppHelper
-import com.chansos.libs.rxkotlin.anno.ModulePresenter
-import com.chansos.libs.rxkotlin.anno.PageLayoutId
-import com.chansos.libs.rxkotlin.anno.PageOptions
-import com.chansos.libs.rxkotlin.base.BaseActivity
+import com.chansos.libs.rxkotlin.Kt
+import com.chansos.libs.rxkotlin.annotations.ModulePresenter
+import com.chansos.libs.rxkotlin.annotations.PageLayoutId
+import com.chansos.libs.rxkotlin.annotations.PageOptions
+import com.chansos.libs.rxkotlin.classes.BaseActivity
 import com.chansos.rxandroid.kotlin.R
 import kotlinx.android.synthetic.main.activity_launch.*
 
@@ -20,7 +20,7 @@ class LaunchActivity : BaseActivity(), Contract.View {
     private lateinit var presenter: Presenter
     override fun initialize() {
         bindClick(textView)
-        AppHelper.Image.noCacheLoad(imageView, "https://tinypng.com/images/pro/panda-pro.png", self)
+        Kt.Image.noCacheLoad(imageView, "https://tinypng.com/images/pro/panda-pro.png", self)
         presenter.startTimer()
     }
 

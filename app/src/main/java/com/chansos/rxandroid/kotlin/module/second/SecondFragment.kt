@@ -4,10 +4,10 @@
 
 package com.chansos.rxandroid.kotlin.module.second
 
-import com.chansos.libs.rxkotlin.anno.ModulePresenter
-import com.chansos.libs.rxkotlin.anno.PageLayoutId
-import com.chansos.libs.rxkotlin.base.BaseViewPagerFragment
-import com.chansos.libs.rxkotlin.log.LogUtils
+import com.chansos.libs.rxkotlin.annotations.ModulePresenter
+import com.chansos.libs.rxkotlin.annotations.PageLayoutId
+import com.chansos.libs.rxkotlin.classes.BaseViewPagerFragment
+import com.chansos.libs.rxkotlin.utils.LogUtils
 import com.chansos.rxandroid.kotlin.R
 
 @PageLayoutId(R.layout.fragment_second)

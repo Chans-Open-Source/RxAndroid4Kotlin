@@ -2,11 +2,11 @@ package com.chansos.rxandroid.kotlin.module.list
 
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
-import com.chansos.libs.rxkotlin.AppHelper
-import com.chansos.libs.rxkotlin.anno.ModulePresenter
-import com.chansos.libs.rxkotlin.anno.PageLayoutId
-import com.chansos.libs.rxkotlin.base.BaseActivity
-import com.chansos.libs.rxkotlin.base.BaseRecyclerViewAdapter
+import com.chansos.libs.rxkotlin.Kt
+import com.chansos.libs.rxkotlin.annotations.ModulePresenter
+import com.chansos.libs.rxkotlin.annotations.PageLayoutId
+import com.chansos.libs.rxkotlin.classes.BaseActivity
+import com.chansos.libs.rxkotlin.classes.BaseRecyclerViewAdapter
 import com.chansos.rxandroid.kotlin.R
 import kotlinx.android.synthetic.main.activity_list.*
 
@@ -26,7 +26,7 @@ class ListActivity : BaseActivity(), BaseRecyclerViewAdapter.OnItemClickListener
     }
 
     override fun onItemClick(view: View, position: Int) {
-        AppHelper.UI.showToast("Clicked $position.")
+        Kt.UI.showToast("Clicked $position.")
     }
 
     override fun onDestroy() {
