@@ -5,7 +5,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import com.chansos.libs.rxkotlin.Kt
-import com.chansos.libs.rxkotlin.annotations.ModulePresenter
+import com.chansos.libs.rxkotlin.annotations.Autowire
 import com.chansos.libs.rxkotlin.annotations.PageLayoutId
 import com.chansos.libs.rxkotlin.annotations.PageOptions
 import com.chansos.libs.rxkotlin.classes.BaseActivity
@@ -15,9 +15,9 @@ import kotlinx.android.synthetic.main.activity_first.*
 import java.util.*
 
 @PageLayoutId(R.layout.activity_first)
-@ModulePresenter(clazz = com.chansos.rxandroid.kotlin.module.first.Presenter::class)
 @PageOptions(title = "FirstActivity")
 class FirstActivity : BaseActivity(), Contract.View {
+    @Autowire
     private lateinit var presenter: Presenter
     override fun initialize() {
         bindClick(this.fetch_data, to_second_page, exit_app, to_list_page, to_crash_page)

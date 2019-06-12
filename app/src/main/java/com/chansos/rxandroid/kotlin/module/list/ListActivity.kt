@@ -3,7 +3,7 @@ package com.chansos.rxandroid.kotlin.module.list
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import com.chansos.libs.rxkotlin.Kt
-import com.chansos.libs.rxkotlin.annotations.ModulePresenter
+import com.chansos.libs.rxkotlin.annotations.Autowire
 import com.chansos.libs.rxkotlin.annotations.PageLayoutId
 import com.chansos.libs.rxkotlin.classes.BaseActivity
 import com.chansos.libs.rxkotlin.classes.BaseRecyclerViewAdapter
@@ -11,8 +11,8 @@ import com.chansos.rxandroid.kotlin.R
 import kotlinx.android.synthetic.main.activity_list.*
 
 @PageLayoutId(R.layout.activity_list)
-@ModulePresenter("com.chansos.rxandroid.kotlin.module.list.Presenter")
 class ListActivity : BaseActivity(), BaseRecyclerViewAdapter.OnItemClickListener, Contract.View {
+    @Autowire
     private lateinit var presenter: Presenter
     private lateinit var adapter: ImageListAdapter
 
