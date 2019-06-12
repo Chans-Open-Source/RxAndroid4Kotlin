@@ -29,7 +29,7 @@ class SecondActivity : BaseActivity(), ViewPager.OnPageChangeListener, TabLayout
         view_pager.addOnPageChangeListener(self as SecondActivity)
         tab_layout.setupWithViewPager(view_pager)
         tab_layout.addOnTabSelectedListener(self as SecondActivity)
-        for (i in 0..(tab_layout.tabCount - 1)) {
+        for (i in 0 until tab_layout.tabCount) {
             tab_layout.getTabAt(i)?.text = fragmentList[i].javaClass.simpleName
         }
         onPageSelected(0)
